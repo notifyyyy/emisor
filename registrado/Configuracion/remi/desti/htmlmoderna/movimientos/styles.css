@@ -1,0 +1,186 @@
+/* Estilos del spinner */
+.spinner {
+	margin: 0 auto;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+    min-height: 100vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    font-family: "Bariol", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Asegura que el gradiente cubra toda la altura de la ventana */
+	
+	
+}
+
+#content {
+    align-items: center;
+}
+
+#img1 {
+	 
+	width: 100%;
+	top: 0;
+	height: 50%;
+}
+
+#transferencias{
+	position: relative;
+	top: 0;
+	left: 0;
+	margin-top: 84%; 
+	padding-bottom: 1%;
+	display: grid;
+ 
+}
+
+#ico {
+    border: solid 1px #68666675;
+    padding: 10px;
+    border-radius: 50%;
+    letter-spacing: 1px;
+    margin-left: 8%;
+    margin-right: 4%;
+    width: 25px; /* Tamaño fijo */
+    height: 25px; /* Tamaño fijo */
+    padding: 8px;
+    align-items: center;
+    display: flex;
+}
+
+
+#icoIMG {
+	border: solid 1px #68666675;
+	/* padding: 10px; */
+	border-radius: 50%;
+	letter-spacing: 1px;
+	margin-left: 8%;
+	margin-right: 4%;
+	height: 44px;
+}
+
+ 
+
+
+
+
+#transferencias span {	
+	font-size: 16px;
+	color:#424040;
+}
+
+
+
+#izq {
+    display: flex;
+     align-items: center;
+}
+
+#izqText{
+	white-space: nowrap;
+	display: grid;
+	
+}
+
+
+#der {
+    text-align: right; 
+ 	margin-right: 4%;
+}
+
+#div2 {
+	margin-top: 2%;
+	background: white;
+	position: relative;
+	padding: 3% 3%;
+	width: 88%;
+	margin-left: 2.5%;
+	border-radius: 5px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#enc1{
+	
+	display: flex;
+	justify-content: space-between;
+	
+}
+#enc2{
+	margin-top: 5%;	
+}
+#enc3{
+	margin-top: 6%;	
+}
+#enc3 img{
+	width: 100%;
+	
+}
+#div2 span {
+	
+	font-size: 14px; 
+	color:black;
+}
+
+
+ 
+ .imagen-fija {
+ 
+ position:fixed; 
+ z-index:9999;
+ top: 0;
+}
+
+
+
+
+
+#img2 {
+	 
+	width: 100%;
+	position: fixed; 
+	bottom: 0;
+ 
+ 
+}
+.pie {
+	position: fixed;
+	bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

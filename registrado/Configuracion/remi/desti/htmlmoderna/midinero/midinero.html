@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <link rel="stylesheet" href="styles.css">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		<div id="content" style="display: none;">  
+			
+			<div class="imagen-fija"><img id="img1" src="img1.jpg"></img></div>
+			
+			<div class="import">
+				<div class="numero numero-superior">
+					<span class="monto">$</span>
+					<span class="monto" id="monto">25000</span>
+					<span class="montoDec">63</span>
+				</div>
+				<img id="img2" src="img2.jpg">
+				<div class="numero numero-inferior">
+					<span class="monto">$</span>
+					<span class="monto" id="monto2">25000</span>
+					<span class="montoDecInf">63</span>
+				</div>
+				
+				<div class="numero numero-grafico">
+					<span class="monto">$</span>
+					<span class="monto" id="monto3" style="margin-left:-9px;">25000</span>
+			 		<span class="montoDecInf" style="margin-left: -10px;top: -9px;position: relative;font-size: 12px;">63</span><br> 
+					<span style="color:gray;font-size:14px;">Total <span id="mes"></span></span>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+		</div>
+		
+		
+	</div>			
+	
+	
+	
+	
+	
+	
+	<script src="script.js"></script>
+	
+	<script>
+		function restarFecha(dias) {
+			const fechaActual = new Date();
+			fechaActual.setDate(fechaActual.getDate() - dias);
+			
+			const dia = fechaActual.getDate();
+			const mes = obtenerNombreMes(fechaActual.getMonth());
+			
+			return `${dia} de ${mes}`;
+		}
+		
+		function obtenerNombreMes(numeroMes) {
+			const meses = [
+			"enero", "febrero", "marzo", "abril", "mayo", "junio",
+			"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+			];
+			
+			return meses[numeroMes];
+		}
+		
+		function cargarFechas() {
+			const spans = document.querySelectorAll("span[data-dias]");
+			
+			spans.forEach(span => {
+				const dias = parseInt(span.getAttribute("data-dias"));
+				const fechaRestada = restarFecha(dias);
+				span.textContent = fechaRestada;
+			});
+		}
+		
+		
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+			
+			// Ocultar el mensaje de carga y mostrar el contenido de la página
+			loader.style.display = "none";
+			content.style.display = "block";
+			cargarFechas();
+		};
+		
+		function siguiente() {
+			var front = document.getElementById("front");
+			front.style.transition = "transform 0.8s ease";
+			front.style.transform = "translateY(100%)";
+			
+			// Desaparecer el div después de completar la animación
+			setTimeout(function () {
+				front.style.display = "none";
+			}, 300);
+		}
+		
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+		
+		const RemiNombre = urlParams.get('RemiNombre');
+		var RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');  
+		const DestiNombre1 = urlParams.get('DestiNombre1');  
+		const DestiNombre2 = urlParams.get('DestiNombre2'); 
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		var DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+		
+		
+		
+		const fechaActual2 = new Date(); 
+		const mes = obtenerNombreMes(fechaActual2.getMonth());
+		document.getElementById("monto").innerHTML = RemiSaldo; 
+		document.getElementById("monto2").innerHTML = RemiSaldo; 
+		document.getElementById("monto3").innerHTML = RemiSaldo; 
+		document.getElementById("mes").innerHTML = mes; 
+		
+		
+		
+		
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+		
+		document.addEventListener('touchmove', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+		
+		
+		
+		//ir a movimientos
+		document.getElementById("img2").addEventListener("click", function() {				
+			window.open("../movimientos/movimientos.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+		}); 
+		
+		
+		
+		
+	</script>
+	
+</body>
+</html>

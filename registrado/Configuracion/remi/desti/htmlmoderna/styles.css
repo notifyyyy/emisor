@@ -1,0 +1,240 @@
+ @font-face {
+ 	font-family: 'Proxima Nova';
+ 	src: url('ProximaNovaRegular.ttf') format('truetype');
+ 	font-weight: normal;
+ 	font-style: normal;
+ }
+
+ /* Estilos del spinner */
+ .spinner {
+ 	margin: 0 auto;
+ 	width: 15px;
+ 	height: 15px;
+ 	border: 2px solid #f3f3f3;
+ 	border-top: 2px solid #3498db;
+ 	border-radius: 50%;
+ 	animation: spin 1s linear infinite;
+ }
+
+ @keyframes spin {
+ 	0% {
+ 		transform: rotate(0deg);
+ 	}
+
+ 	100% {
+ 		transform: rotate(360deg);
+ 	}
+ }
+
+
+
+ body {
+ 	min-height: 100vh;
+ 	display: block;
+ 	align-items: center;
+ 	justify-content: center;
+ 	font-family: 'Proxima Nova', sans-serif;
+ 	margin: 0;
+ 	padding-top: 20px;
+ 	background: linear-gradient(to top, #f1f1f1 50%, #f1f1f1 85%, #009fe3 90%);
+ 	margin: 0;
+ 	min-height: 100vh;
+
+ }
+
+ #content {
+ 	align-items: center;
+
+ }
+
+
+
+
+ #div1 {
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	display: flex;
+ 	justify-content: space-between;
+ 	align-items: center;
+ 	z-index: 9999;
+ 	background: linear-gradient(to top, #36addf 0%, #009fe3 100%);
+ 	width: 100%;
+ }
+
+ #div1 img {
+ 	width: 100%;
+ }
+
+ #div1 span {
+ 	font-size: 16px;
+ 	color: white;
+ }
+
+
+ #nombree {
+ 	font-family: 'Proxima Nova', sans-serif;
+ 	position: absolute;
+ 	top: 53%;
+ 	left: 10%;
+ }
+
+ #nombree {
+ 	font-family: 'Proxima Nova', sans-serif;
+ 	text-shadow: -0.1px 0 white, 0 0.1px white, 0 -0.1px white, 0 0.1px white;
+ 	margin-left: 2px;
+ }
+
+ .fa-solid,
+ .fas {
+ 	font-weight: 900;
+ 	font-size: 9px;
+ 	margin-left: 5px;
+ }
+
+ #div2 {
+ 	font-family: 'Proxima Nova', sans-serif;
+ 	margin-top: 18%;
+ 	background: white;
+ 	position: relative;
+ 	padding: 3% 3%;
+ 	width: 88%;
+ 	margin-left: 2.5%;
+ 	border-radius: 5px;
+ 	box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
+ }
+
+ #enc1 {
+
+ 	display: flex;
+ 	justify-content: space-between;
+
+ }
+
+ #enc2 {
+ 	margin-top: 3%;
+ }
+
+ #enc3 {
+ 	margin-top: 6%;
+ }
+
+ #enc3 img {
+ 	width: 100%;
+
+ }
+
+ #img2 {
+ 	margin-top: 4%;
+ 	width: 100%;
+ 	bottom: 0;
+
+ }
+
+
+
+
+ #div2 span {
+
+ 	font-size: 14px;
+ 	color: black;
+ }
+
+
+ #imgPie {
+
+ 	width: 100%;
+ 	position: fixed;
+ 	bottom: 0;
+
+ }
+
+ .pie {
+ 	position: fixed;
+ 	bottom: 0;
+ 	z-index: 9999
+ }
+
+ .linea {
+ 	border: 1px solid lightgray;
+ 	margin: 5% 5%;
+ 	width: 106.5%;
+ 	left: -8.5%;
+ 	position: relative;
+ }
+
+
+
+ #transferencias {
+ 	position: relative;
+ 	top: 0;
+ 	left: 0;
+ 	margin-top: 1%;
+ 	padding-bottom: 1%;
+ 	display: grid;
+
+ }
+
+ #ico {
+ 	border: solid 1px #68666675;
+ 	padding: 10px;
+ 	border-radius: 50%;
+ 	letter-spacing: 1px; 
+ 	margin-right: 4%;
+ 	width: 11%;
+ 	height: auto;
+ 	padding: 8px;
+ 	align-items: center;
+ 	display: flex;
+ }
+
+ #icoIMG {
+ 	border: solid 1px #68666675; 
+ 	border-radius: 50%;
+ 	letter-spacing: 1px; 
+ 	margin-right: 4%;
+ 	height: 44px;
+ }
+
+
+ #actividades {
+ 	margin-top: 1%;
+ 	background: white;
+ 	position: relative;
+ 	padding: 5% 3%;
+
+ 	width: 88%;
+ 	margin-left: 2.5%;
+ 	border-radius: 5px;
+ 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.7);
+ }
+
+
+
+
+ #transferencias span {
+ 	font-size: 16px;
+ 	color: #424040;
+ }
+
+
+ #der {
+
+ 	margin-right: 4%;
+ }
+
+ #izq {
+ 	display: flex;
+ 	align-items: center;
+ }
+
+ #izqText {
+ 	white-space: nowrap;
+ 	display: grid;
+ }
+
+ #imgFin {
+ 	margin-top: 4%;
+ 	width: 100%;
+ 	margin-bottom: 10%;
+ }

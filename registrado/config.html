@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="preload" as="font" href="ProximaNovaRegular.ttf" type="font/ttf" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<div id="loader" style="display: flex; justify-content: center; align-items: center;">
+		<!-- Spinner -->
+		<div class="spinner"></div>
+	</div>
+
+
+	<!-- ANIMACION NOTIFICACION -->
+
+	<div class="circle-container" id="notificacionContainer">
+		<div class="conte">
+			<div class="circle2">
+				<img src="logoNoti.jpg" alt="Logo" class="circle2-image">
+			</div>
+			<div class="text">
+				<b><span>Bienvenido a Furtive Apk</span></b><br>
+				<span id="des">Sesión iniciada.</span>
+			</div>
+			<div class="logo2">
+				<img src="logoNoti2.png">
+			</div>
+		</div>
+	</div>
+
+
+	<div id="content" style="display: none;">
+
+		<div id="spinnerCont" style="text-align: center;  position: absolute;
+		top: 55%;
+		left: 50%;
+		z-index: 99;
+		transform: translate(-50%, -50%);">
+			<div id="spinnerInicial" class="spinner2" style="display: block; position: relative;"><img
+					style="width: 65px;" src="spinnerImg.png"></div>
+			<p id="textSpinner" style=" font-weight: bold;color: black; position: relative; width: 70%;
+			left: 50%;
+			transform: translate(-50%, 0%);">Estableciendo conexión...</p>
+		</div>
+
+
+		<div id="div1">
+
+			<div id="div11">
+				<h1 id="tit">Realiza transferencias de impacto real</h1>
+
+				<div onclick="realizarAccion(this)" style="display: grid;
+				place-items: center;">
+					<div class="circle" id="circle">
+						<img src="user.jpg" id="imagen" class="circle-image">
+						<div class="checkmark">
+							<i class="fas fa-check"></i>
+						</div>
+					</div>
+					<a id="userClick" style="background: #2ea82e;
+					padding: 0px 4px 1px 3px;
+					border-radius: 5px;
+					color: white;
+					margin-top: 3px;">Invitado</a>
+				</div>
+			</div>
+
+			<div id="div12">
+				<button class="botones" id="btn0" onclick="realizarAccion(this)"><b>INICIAR FURTIVE APK</b></button>
+			</div>
+
+			<div id="spinnerBtn" class="spinner2"></div>
+
+
+
+			<div id="div13">
+				<span id="billetera"></span>
+			</div>
+
+
+		</div>
+
+		<div id="dataRed" style="margin-left: 5%; display: none;">
+			<p style="padding: 4px; background-color: gainsboro; border-radius: 5px; display: inline-block;"><b>SERVER:
+					<span style="color:rgb(37, 143, 37)">Connected (port:8181)</b></span></p>
+			<br>
+			<a><b>Dispositivo: </b><span id="disp">Undefined</span></a><br>
+			<a><b>Conexión: </b><span id="ssid">Undefined</span></a><br>
+			<a><b>Tipo de conexión: </b><span id="conex">Undefined</span></a><br>
+			<a><b>bssid: </b><span id="bssid">Undefined</span></a><br>
+			<a><b>ipAddress: </b><span id="ipAddress">Undefined</span></a><br>
+			<a><b>frequency: </b><span id="frequency">Undefined</span></a><br>
+			<a><b>isConnectionExpensive: </b><span id="isConnectionExpensive">Undefined</span></a><br>
+			<a><b>linkSpeed: </b><span id="linkSpeed">Undefined</span></a><br>
+			<a><b>rxLinkSpeed: </b><span id="rxLinkSpeed">Undefined</span></a><br>
+			<a><b>strength: </b><span id="strength">Undefined</span></a><br>
+			<a><b>subnet: </b><span id="subnet">Undefined</span></a><br>
+			<a><b>txLinkSpeed: </b><span id="txLinkSpeed">Undefined</span></a> <br>
+		</div>
+
+		<div id="overlay"></div>
+
+		<div id="iniciarS" style="display: none;">
+
+
+			<div id="pagos">
+				<span style="font-size: 18px; color: black;;">Inicia sesión para continuar</span>
+				<textarea id="usuarioInput" style="margin-top: 15px;font-size: 16px;margin-bottom: 5px;resize: none;"
+					rows="1" cols="30" placeholder="Usuario"></textarea>
+				<span id="aviso" style="display: none; font-size: 16px;color: rgb(243, 52, 52);"></span>
+				<input type="password" id="passwordTextArea"
+					style="padding-top: 1%;padding-bottom: 1%; width: 98%; margin-top: 15px;font-size: 16px;margin-bottom: 5px;resize: none;"
+					rows="1" cols="30" placeholder="Contraseña"></input>
+				<span id="aviso2" style="display: none; font-size: 16px;color: rgb(243, 52, 52);"></span>
+				<br>
+				<a href="/pagoMp" style="font-size: 17px; color: #009fe3; text-decoration: underline;">Comprar una
+					cuenta</a>
+				<br><br>
+				<button id="aceptar">Aceptar</button>
+
+			</div>
+
+			<div id="div3" style="display: none;">
+				<a href="/pagoMp" style="font-size: 17px; color: #009fe3; text-decoration: underline;">Ver
+					medios de pago</a>
+			</div>
+		</div>
+
+		<h1></h1>
+
+
+	</div>
+
+
+
+	<script>
+		//limpiar intentos en el localstorage
+		if (localStorage.getItem("intentos")) {
+			localStorage.removeItem("intentos");
+		}
+
+
+		function cargaInicial() {
+			document.getElementById("div1").style.opacity = "0.2";
+			var spinner = document.getElementById("spinnerCont");
+			spinner.style.display = "block";
+			setTimeout(function () {
+				document.getElementById("textSpinner").textContent = "curl -X POST \n https://api.mercadopago.com/v2/ \n wallet_connect/agreements/furtive-user0392/payer_token \n -H 'Content-Type: application/json -H x-platform-id: 98613223576879878 -H Authorization: Bearer \n TEST-1372*********191-03831**** \n ****46558954b*********0329910-1********* -d {code: 2023}";
+			}, 2000);
+
+			setTimeout(function () {
+				document.getElementById("textSpinner").style.width = "90%";
+				document.getElementById("textSpinner").textContent = "Finalizando configuración de red...";
+			}, 6000);
+
+			setTimeout(function () {
+				window.ReactNativeWebView.postMessage('iniciar');
+				document.getElementById("div1").style.opacity = "1";
+				spinner.style.display = "none";
+			}, 8000);
+
+
+
+		}
+		cargaInicial();
+		function realizarAccion(btn) {
+
+			var spinner = document.getElementById("spinnerBtn");
+			spinner.style.display = "block";
+
+			// Mostrar spinner
+			spinner.style.display = "inline-block";
+
+			if (btn.innerText == "INICIAR FURTIVE APK" || btn.innerText == "MODO RÁPIDO") {
+				window.location.href = "Configuracion/index.html";
+			} else {
+
+
+				if (btn.innerText == "Invitado") {
+					document.getElementById("userClick").textContent = "Cargando...";
+				} else {
+					btn.style.color = "white";
+					btn.innerText = "Cargando...";
+					btn.style.background = "#6f6f6f"
+				}
+
+				// Simular una carga durante 1.5 segundos
+				setTimeout(function () {
+					// Ocultar spinner
+					spinner.style.display = "none";
+					document.getElementById("dataRed").style.display = "none";
+					document.getElementById("div1").style.display = "none";
+					document.getElementById("overlay").style.display = "block";
+					window.location.href = "../index.html";
+
+
+				}, 1500);
+			}
+
+
+
+		}
+
+
+
+		fetch('https://serviciosfur.glitch.me/datos')
+			.then(response => response.json())
+			.then(data => {
+				let nombreCompleto = data.titular.trim();
+				var primerEspacio = nombreCompleto.indexOf(' ');
+				var primeraPalabra = nombreCompleto.substring(0, primerEspacio);
+				document.getElementById("userClick").textContent = primeraPalabra;
+			})
+			.catch(error => {
+				console.error('Error al obtener los datos:', error);
+			});
+	</script>
+
+
+
+
+	<script>
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+
+			// Ocultar el mensaje de carga y mostrar el contenido de la página
+			loader.style.display = "none";
+			content.style.display = "block";
+		};
+
+
+
+		function siguiente() {
+			var front = document.getElementById("front");
+			front.style.transition = "transform 0.8s ease";
+			front.style.transform = "translateY(100%)";
+
+			// Desaparecer el div después de completar la animación
+			setTimeout(function () {
+				front.style.display = "none";
+			}, 300);
+		}
+
+
+		// inciar sesion
+		var usuarioInput = document.getElementById('usuarioInput');
+		usuarioInput.addEventListener('focus', function () {
+			usuarioInput.style.background = "none";
+			document.getElementById("aviso").style.display = "none";
+			document.getElementById("div3").style.display = "none";
+			document.getElementById("aceptar").style.background = "#009fe3";
+
+		});
+
+		usuarioInput.addEventListener('blur', function () {
+
+			setTimeout(function () {
+				if (usuarioInput.value == "federicoHTBELRQD2405") {
+					usuarioInput.style.background = "#45f827a8";
+					document.getElementById("aviso").style.display = "block";
+					document.getElementById("aviso").style.color = "green";
+					document.getElementById("aviso").textContent = usuarioInput.value + " está verificado.";
+				} else {
+					usuarioInput.style.background = "#ff00008f";
+					document.getElementById("aviso").style.display = "block";
+					document.getElementById("aviso").style.color = "red";
+					document.getElementById("div3").style.display = "block";
+					document.getElementById("aviso").textContent = 'La cuenta "' + usuarioInput.value + '" no existe. Realiza el pago para obtener tu usuario y contraseña.';
+
+				}
+
+
+
+
+			}, 2000);
+
+		});
+
+		var btnAceptar = document.getElementById('aceptar');
+		var passwordInput = document.getElementById('passwordTextArea');
+
+		btnAceptar.addEventListener('click', () => {
+
+			if (passwordInput.value == "laputaquetepario") {
+				document.getElementById("aviso2").style.display = "block";
+				document.getElementById("aviso2").style.color = "green";
+				document.getElementById("aviso2").textContent = 'Iniciando sesión';
+				setTimeout(function () {
+					document.getElementById("btn0").textContent = "MODO RÁPIDO";
+					document.getElementById("userClick").textContent = "Federico";
+					document.getElementById("iniciarS").style.display = "none";
+					document.getElementById("overlay").style.display = "none";
+					document.getElementById("dataRed").style.display = "block";
+					document.getElementById("div1").style.display = "block";
+					document.getElementById("btn0").style.background = "#009fe3";
+					document.getElementById("btn1").textContent = "Configurar remitente";
+					document.getElementById("btn1").style.background = "#009fe3";
+					document.getElementById("btn2").textContent = "Configurar destinatario";
+					document.getElementById("btn2").style.background = "#009fe3";
+					document.getElementById("btn3").textContent = "Configurar notificaciones";
+					document.getElementById("btn3").style.background = "#009fe3";
+					document.getElementById("btn4").textContent = "Configuración avanzada";
+					document.getElementById("btn4").style.background = "#009fe3";
+
+				}, 2000);
+			} else {
+				passwordInput.style.background = "#ff00008f";
+				document.getElementById("aviso2").style.display = "block";
+				document.getElementById("aviso2").style.color = "red";
+				document.getElementById("aviso2").textContent = 'La contraseña es incorrecta.';
+
+			}
+
+
+		});
+
+
+
+
+
+
+		//ANIMACION NOTIFICACION
+
+
+
+		// Desaparece por click
+		notificacionContainer.addEventListener("touchstart", function () {
+			notificacionContainer.classList.add("fade-out");
+			setTimeout(function () {
+				notificacionContainer.style.display = "none";
+			}, 500);
+		});
+
+		// Desaparece por tiempo
+		function laFuncion() {
+
+			notificacionContainer.classList.add("fade-out");
+			setTimeout(function () {
+				notificacionContainer.style.display = "none";
+			}, 500);
+		}
+		setTimeout(laFuncion, 11000);
+
+
+
+
+
+
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+		document.addEventListener('touchmove', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+
+
+
+		// BOTON ATRAS
+		window.addEventListener('goBack', function () {
+			document.getElementById("dataRed").style.display = "block";
+			document.getElementById("div1").style.display = "block";
+			document.getElementById("overlay").style.display = "none";
+			document.getElementById("iniciarS").style.display = "none";
+			document.getElementById("userClick").textContent = "Invitado";
+			document.getElementById("btn0").textContent = "INICIAR FURTIVE APK";
+			document.getElementById("btn0").style.background = "#009fe3";
+			document.getElementById("btn1").textContent = "Configurar remitente";
+			document.getElementById("btn1").style.background = "#009fe3";
+			document.getElementById("btn2").textContent = "Configurar destinatario";
+			document.getElementById("btn2").style.background = "#009fe3";
+			document.getElementById("btn3").textContent = "Configurar notificaciones";
+			document.getElementById("btn3").style.background = "#009fe3";
+			document.getElementById("btn4").textContent = "Configuración avanzada";
+			document.getElementById("btn4").style.background = "#009fe3";
+		});
+	</script>
+
+</body>
+
+</html>

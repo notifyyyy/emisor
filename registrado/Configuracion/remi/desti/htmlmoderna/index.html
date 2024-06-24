@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!-- ?RemiNombre=juan carlos&RemiCuit=2020202020&RemiCbu=0000003100020309466233&RemiSaldo=52550&RemiMotivo=varios&DestiNombre1=Play Mendoza S.A.-&DestiNombre2=Play Mendoza S.A. Play Mendoza S.A.&DestiAlias=petra.dance.2023&DestiCbuDest=000000005555555&DestiCuit=2203333323030&DestiCuenta=Mercado Pago&DestiTipo=Cuenta digital&DestiImagen=no&monto=0&hora=Actual&TresCod=777 -->
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+	<div id="loader" style="display: flex; justify-content: center; align-items: center;">
+		<!-- Spinner -->
+		<div class="spinner"></div>
+	</div>
+
+	<div id="content" style="display: none;">
+
+
+		<div id="div1">
+			<img src="enca.jpg"></img>
+			<div id="nombree">
+				<span> Hola, <span id="tit" style="text-transform: lowercase;">carlos</span> <i
+						class="fa-solid fa-chevron-right fa-xs" style="color: #ffffff;"></i></span>
+			</div>
+
+		</div>
+
+		<div id="div2">
+			<div id="enc1">
+				<div id="izquierda">
+					<b><span>Disponible  </span><span
+							style="color:#06a444;background:#27ca272b;border-radius:12px;padding-right:6%;padding-left:6%;padding-top:2%;padding-bottom:2%">▲ 96,8%</span>
+				</div>
+				<div id="der2">
+					<span id="btnMov" style="color:#3aa3ff">Ir a movimientos <i class="fa-solid fa-chevron-right fa-xs"
+							style="color: #3aa3ff;"></i></span>
+				</div></b>
+			</div>
+
+			<div id="enc2">
+				<b><span style="font-size:34px; margin-right:5px;">$</span><span id="sald"
+						style="font-size:34px;"></span><span id="dec"
+						style="font-size: 19px;margin-left: 2px;position: relative;bottom: 12px;">63</span></b>   
+				<i id="eye-icon" class="fa-regular fa-eye fa-sm" style="color: #000000;"></i>
+			</div>
+
+			<div id="enc3">
+				<img id="img1" src="img1.jpg"></img>
+			</div>
+		</div>
+
+
+		<img id="img2" src="img2.jpg"></img>
+		<div class="pie">
+			<img id="imgPie" src="barraAbajo.png" onclick="detectarClic(event)">
+		</div>
+
+		<div id="actividades">
+			<b><span style="margin-left:5%;font-size:20px;margin-bottom: 5%;">Tu última actividad  </span></b>
+			<hr class="linea">
+			<div id="transferencias"></div>
+			<hr class="linea">
+			<b><span id="verAct" style="margin-left:5%;font-size:15px;margin-bottom: 5%;color:#33a9db ">Ver toda tu
+					actividad  </span></b>
+		</div>
+
+		<img id="imgFin" src="fin.jpg"></img>
+	</div>
+
+
+
+
+
+
+
+
+
+	<script src="script.js"></script>
+	<script>
+
+		agregarActividades();
+
+		function restarFecha(dias) {
+			const fechaActual = new Date();
+			fechaActual.setDate(fechaActual.getDate() - dias);
+
+			const dia = fechaActual.getDate();
+			const mes = obtenerNombreMes(fechaActual.getMonth());
+
+			return `${dia} de ${mes}`;
+		}
+
+		function obtenerNombreMes(numeroMes) {
+			const meses = [
+				"enero", "febrero", "marzo", "abril", "mayo", "junio",
+				"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+			];
+
+			return meses[numeroMes];
+		}
+
+		function cargarFechas() {
+			const spans = document.querySelectorAll("span[data-dias]");
+
+			spans.forEach(span => {
+				const dias = parseInt(span.getAttribute("data-dias"));
+				const fechaRestada = restarFecha(dias);
+				span.textContent = fechaRestada;
+			});
+		}
+
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+
+			// Ocultar el mensaje de carga y mostrar el contenido de la página
+			loader.style.display = "none";
+			content.style.display = "block";
+		};
+
+		cargarFechas();
+
+
+
+		//GET INFO PARAMS  
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+
+		const RemiNombre = urlParams.get('RemiNombre');
+		var RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');
+		const DestiNombre1 = urlParams.get('DestiNombre1');
+		const DestiNombre2 = urlParams.get('DestiNombre2');
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		var DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+
+
+		monto = monto.replace(/,.*|[^0-9]/g, "");
+		RemiSaldo = RemiSaldo.replace(/,.*|[^0-9]/g, "");
+
+		RemiSaldo = RemiSaldo - monto;
+
+		RemiSaldo = new Intl.NumberFormat('es-ES').format(RemiSaldo);
+
+		document.getElementById("sald").innerHTML = RemiSaldo;
+
+		//poner guiones a cuit
+		if (!DestiCuit.includes("-")) {
+			DestiCuit = DestiCuit.toString();
+			var primerosDos = DestiCuit.substring(0, 2);
+			var siguientesOcho = DestiCuit.substring(2, 10);
+			var ultimo = DestiCuit.charAt(DestiCuit.length - 1);
+			DestiCuit = primerosDos + "-" + siguientesOcho + "-" + ultimo;
+		}
+		//poner guiones a cuit
+		if (!RemiCuit.includes("-")) {
+			RemiCuit = RemiCuit.toString();
+			var primerosDos = RemiCuit.substring(0, 2);
+			var siguientesOcho = RemiCuit.substring(2, 10);
+			var ultimo = RemiCuit.charAt(RemiCuit.length - 1);
+			RemiCuit = primerosDos + "-" + siguientesOcho + "-" + ultimo;
+		}
+
+
+
+
+		let partes = RemiNombre.split(/\s+/);
+
+		document.getElementById("tit").innerHTML = partes[0];
+		monto = monto.replace(/,.*|[^0-9]/g, "");
+
+
+
+		// OCUltar salgo
+		const eyeIcon = document.getElementById("eye-icon");
+		const saldoElement = document.getElementById("sald");
+		const dec = document.getElementById("dec");
+		let saldoVisible = true;
+
+		eyeIcon.addEventListener("click", () => {
+			if (saldoVisible) {
+				// Si el saldo está visible, ocúltalo y cambia el icono
+				saldoElement.textContent = "***";
+				eyeIcon.classList.remove("fa-eye");
+				eyeIcon.classList.add("fa-eye-slash");
+				dec.style.visibility = "hidden";
+
+			} else {
+				// Si el saldo está oculto, muéstralo y cambia el icono nuevamente
+				saldoElement.textContent = RemiSaldo; // Reemplaza "100" con el saldo real
+				eyeIcon.classList.remove("fa-eye-slash");
+				eyeIcon.classList.add("fa-eye");
+				dec.style.visibility = "visible";
+			}
+			saldoVisible = !saldoVisible; // Invierte el estado del saldo visible
+		});
+
+		/*	// Obtener el número máximo de entradas desde el contador
+			var maxEntradas = localStorage.length;
+			
+			// Recorrer todas las entradas existentes
+			for (var i = 1; i <= maxEntradas; i++) {
+			// Obtener la entrada actual del localStorage
+			var entradaJSON = localStorage.getItem("entrada_" + i);
+			
+			// Comprobar si la entrada existe (puede haber huecos si se eliminan)
+			if (entradaJSON) {
+			// Convertir la entrada JSON en un objeto JavaScript
+			var entrada = JSON.parse(entradaJSON);
+			
+			agregarNuevaEntrada(entrada.monto,entrada.nombre);
+			}
+			}
+			
+			
+			
+			
+			
+			if(monto != "0"){
+			
+			agregarNuevaEntrada(monto,nombre);
+			
+		} */
+
+
+
+		<!-- Boton movimiento -->
+		document.getElementById("btnMov").addEventListener("click", function () {
+			window.open("movimientos/movimientos.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+		});
+
+
+
+		document.getElementById("verAct").addEventListener("click", function () {
+			window.open("movimientos/movimientos.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+		});
+
+
+
+
+		document.getElementById("img1").addEventListener("click", function () {
+			const miImagen = document.getElementById("img1");
+			const width = miImagen.width; // Ancho de la imagen
+			const clickX = event.clientX - miImagen.getBoundingClientRect().left; // Posición horizontal del clic
+
+			if (clickX >= width * 0.25 && clickX <= width * 0.5) {
+				window.open("inalias/inalias.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+			} else {
+				window.ReactNativeWebView.postMessage('salir');
+
+			}
+
+
+		});
+
+
+		document.getElementById("sald").addEventListener("click", function () {
+			window.open("midinero/midinero.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+		});
+
+
+		document.getElementById("imgFin").addEventListener("click", function () {
+			window.open("inalias/inalias.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+		});
+
+
+		document.getElementById("img2").addEventListener("click", function () {
+			window.ReactNativeWebView.postMessage('salir');
+		});
+
+
+		document.getElementById("div1").addEventListener("click", function () {
+			const posX = event.clientX - event.target.getBoundingClientRect().left;
+			const anchoImagen = event.target.offsetWidth;
+			const puntoMedio = anchoImagen / 2;
+			if (posX < puntoMedio) {
+				window.open("miperfil/miperfil.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+			} else {
+				window.open("inalias/inalias.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+
+			}
+
+
+
+		});
+
+		// Si se mantiene presionado 1 segundos, se va a la configuracion. current.html
+		let miBoton = document.getElementById('div1');
+		let tiempoRequerido = 1000;
+		let tiempoPresionado;
+		let tiempoCumplido = false;
+
+		miBoton.addEventListener('touchstart', function () {
+			tiempoPresionado = new Date().getTime();
+			setTimeout(function () {
+				let tiempoTranscurrido = new Date().getTime() - tiempoPresionado;
+				if (tiempoTranscurrido >= tiempoRequerido) {
+					tiempoCumplido = true;
+					// Realiza la acción que desees aquí después de 1 segundos, incluso si el botón sigue presionado.
+					window.open("current.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+
+				}
+			}, tiempoRequerido);
+		});
+
+		miBoton.addEventListener('touchend', function () {
+			if (!tiempoCumplido) {
+				// Cancela la acción si se suelta el botón antes de 3 segundos.
+				clearTimeout(); // Detiene el temporizador
+			}
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//Click: izq=movimientos  --  centro= pago QR --  derecha= borrar movimientos y cerrar.
+
+		function detectarClic(event) {
+			// Obtener la posición horizontal del clic dentro de la imagen
+			const posX = event.clientX - event.target.getBoundingClientRect().left;
+			const anchoImagen = event.target.offsetWidth;
+
+			// Calcular los puntos de división en tercios
+			const tercio1 = anchoImagen / 3;
+			const tercio2 = (anchoImagen * 2) / 3;
+
+			// Determinar si se hizo clic en el tercio izquierdo, central o derecho de la imagen
+			if (posX < tercio1) {
+				// Clic en el tercio izquierdo
+				window.ReactNativeWebView.postMessage('salir');
+			} else if (posX < tercio2) {
+				// Clic en el tercio central PAGO QR
+				window.ReactNativeWebView.postMessage('Pagar QR');
+			} else {
+				// Clic en el tercio derecho
+				localStorage.clear();
+				function miFuncion() {
+					window.open("inalias/inalias.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=0" + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+				}
+				setTimeout(miFuncion, 2000);
+			}
+		}
+
+
+
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+		document.addEventListener('touchmove', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+	</script>
+
+</body>
+
+</html>

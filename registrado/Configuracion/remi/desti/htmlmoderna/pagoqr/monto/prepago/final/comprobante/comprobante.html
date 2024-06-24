@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="preload" as="font" href="ProximaNovaRegular.ttf" type="font/ttf" crossorigin="anonymous">
+</head>
+
+<body>
+	<!-- ANIMACION NOTIFICACION -->
+
+	<div class="circle-container" id="notificacionContainer">
+		<div class="conte">
+			<div class="circle">
+				<img src="logoNoti.jpg" alt="Logo" class="circle-image">
+			</div>
+			<div class="text">
+				<b><span>Enviaste $ <span id="montoNoti"></span></span>  <span id="horaNoti"></span></b><br>
+				<span id="des">Ya enviamos tu transferencia a <span id="nombreNoti"></span></span>
+			</div>
+			<div class="logo2">
+				<img src="logoNoti2.png">
+			</div>
+		</div>
+	</div>
+
+	<div id="loader" style="display: flex; justify-content: center; align-items: center;">
+		<!-- Spinner -->
+		<div class="spinner"></div>
+	</div>
+
+
+
+	<div id="encabezado" style="display: none;">
+		<img id="cabecera" src="enca.jpg">
+		<div id="texto-superpuesto">Comprobante_<span id="codTrans2"></span></div>
+	</div>
+
+
+
+	<div id="content" style="display: none;">
+		<img id="logo" src="logo.jpg">
+		<b><span style="font-size: 14px; color:black;margin-left: 5px;">Comprobante de transferencia</span></b>
+		<hr>
+
+		<div id="d1">
+			<b><span id="fecha" style="font-size: 10px;"></span></b>
+		</div>
+		<hr style="margin-top:5%;">
+		<div id="d2">
+			<span style="font-size: 23px; color:black">$ </span><span id="mont"
+				style="font-size: 23px; color:black"></span>
+		</div>
+
+		<div id="d3">
+			<span style="font-size: 11px; color:gray ">Motivo: <span><span id="moti"
+						style="font-size: 11px; color:gray"></span>
+		</div>
+		<hr>
+
+		<div class="info-container">
+			<div class="circle blue" style="margin-top:6%"></div>
+			<div class="linea-vertical"></div>
+			<div class="info">
+				<div id="d4">
+					<span style="font-size: 9px; color:gray">De</span><br>
+					<b><span id="tit" style="font-size: 10px; color:black;white-space: nowrap;">Titular</span></b>
+				</div>
+
+				<div id="d5">
+					<span style="font-size: 8px;color:gray">CUIT/CUIL: </span><span id="micu"
+						style="font-size: 8px; color:black;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);">28-0282828-2</span>
+				</div>
+
+				<div id="d6">
+					<b><span style="font-size: 9px; color:black">Cuenta Mercado Pago</span></b>
+				</div>
+
+				<div id="d7">
+					<span style="font-size: 8px; color:gray">CVU: </span><span id="Remcbu"
+						style="font-size: 8px; color:black;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);">0000003945127932158743</span><br>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="info-container">
+			<div class="circle blue" style="margin-top: 5%;"></div>
+			<div class="info">
+				<div id="d8">
+					<span style="font-size: 9px; color:gray">Para</span><br>
+					<b><span id="name" style="font-size: 10px; color:black;white-space: nowrap;">Destinatario</span></b>
+				</div>
+
+				<div id="d9">
+					<span style="font-size: 8px; color:gray">CUIT/CUIL: </span><span id="cuit"
+						style="font-size: 8px; color:black;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);">28-0282828-2</span>
+				</div>
+
+				<div id="d10">
+					<b><span id="billetera" style="font-size: 8px; color:black">LEMON</span></b>
+				</div>
+
+				<div id="d11">
+					<span id="t-cbu" style="font-size: 8px; color:gray">CBU: </span><span id="cbu"
+						style="font-size: 8px; color:black;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);">28-0282828-2</span>
+				</div>
+
+				<div id="d12">
+					<span id="tip"
+						style="font-size: 8px; color:black;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);">LEMON</span>
+				</div>
+			</div>
+		</div>
+		<hr style="margin-top:7%;margin-bottom:7%;">
+		<span style="font-size: 9px; color:gray">Código de transferencia</span>
+		<span id="codTrans"
+			style="font-size: 9px; color:black;margin-top:2%;text-shadow: 0px 0.5px 0px rgb(21, 20, 20);"></span><br>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+	<script>
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+			var enn = document.getElementById("encabezado");
+			setTimeout(function () {
+				// Ocultar el mensaje de carga y mostrar el contenido de la página
+				loader.style.display = "none";
+				enn.style.display = "block";
+				content.style.display = "inline-grid";
+
+			}, 1000);
+
+
+		};
+
+
+		//GET INFO PARAMS  
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+
+		var RemiNombre = urlParams.get('RemiNombre');
+		var RemiCuit = urlParams.get('RemiCuit');
+		var RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		var RemiMotivo = urlParams.get('RemiMotivo');
+		var DestiNombre1 = urlParams.get('DestiNombre1');
+		var DestiNombre2 = urlParams.get('DestiNombre2');
+		const DestiAlias = urlParams.get('DestiAlias');
+		var DestiCbuDest = urlParams.get('DestiCbuDest');
+		var DestiCuit = urlParams.get('DestiCuit');
+		var DestiCuenta = urlParams.get('DestiCuenta');
+		var DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		const codT = urlParams.get('codT');
+		var fecha = urlParams.get('fecha');
+		var notificacion = urlParams.get('notificacion');
+		var TresCod = urlParams.get('TresCod');
+
+		document.getElementById("montoNoti").innerHTML = monto;
+		document.getElementById("nombreNoti").innerHTML = DestiNombre1.substring(0, 6) + " ...";
+		document.getElementById("codTrans").innerHTML = codT;
+		document.getElementById("codTrans2").innerHTML = codT;
+
+
+
+		document.getElementById("fecha").innerHTML = fecha;
+
+		document.getElementById("mont").innerHTML = monto;
+		document.getElementById("tit").innerHTML = RemiNombre;
+		document.getElementById("micu").innerHTML = RemiCuit;
+		document.getElementById("name").innerHTML = DestiNombre2;
+		document.getElementById("cuit").innerHTML = DestiCuit;
+		document.getElementById("billetera").innerHTML = DestiCuenta;
+		document.getElementById("moti").innerHTML = RemiMotivo;
+		document.getElementById("cbu").innerHTML = DestiCbuDest;
+		document.getElementById("tip").innerHTML = DestiTipo;
+		document.getElementById("Remcbu").innerHTML = RemiCbu;
+
+
+
+
+
+		if (DestiTipo == "Cuenta digital") {
+			document.getElementById("t-cbu").innerHTML = "CVU: ";
+		} else {
+
+			document.getElementById("t-cbu").innerHTML = "CBU: ";
+		}
+
+
+
+
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+		document.addEventListener('touchmove', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+
+
+
+		// Obtén el elemento de la imagen y el contenedor
+		const imagen = document.getElementById("cabecera");
+		const contenedor = document.getElementById("encabezado");
+
+		// Agrega un evento click al contenedor
+		contenedor.addEventListener("click", function (event) {
+			// Obtén la posición del clic relativa a la imagen
+			const rect = imagen.getBoundingClientRect();
+			const x = event.clientX - rect.left;
+			const y = event.clientY - rect.top;
+
+			// Calcula el centro de la imagen
+			const centroX = rect.width / 2;
+			const centroY = rect.height / 2;
+
+			if (x < centroX) {
+				window.history.back();
+			} else {
+				// Acción para el lado derecho
+				window.ReactNativeWebView.postMessage("compartir");
+			}
+		});
+
+		//HORA DE NOTIFICACION			
+		var fechaActual = new Date();
+
+
+		var horas = fechaActual.getHours();
+
+		var minutos = fechaActual.getMinutes();
+
+		var horaActual = horas + ":" + minutos;
+
+		console.log("Hora actual: " + horaActual);
+		if (hora == "Actual") {
+			document.getElementById("horaNoti").innerHTML = horaActual;
+		} else {
+			document.getElementById("horaNoti").innerHTML = hora;
+		}
+		//ANIMACION NOTIFICACION
+
+
+
+		var notificacionContainer = document.getElementById("notificacionContainer");
+
+		if (notificacion === "no") {
+			notificacionContainer.style.display = "none";
+
+		}
+
+
+
+		// Desaparece por click
+		notificacionContainer.addEventListener("touchstart", function () {
+			notificacionContainer.classList.add("fade-out");
+			setTimeout(function () {
+				notificacionContainer.style.display = "none";
+			}, 500);
+		});
+
+		// Desaparece por tiempo
+		function laFuncion() {
+
+			notificacionContainer.classList.add("fade-out");
+			setTimeout(function () {
+				notificacionContainer.style.display = "none";
+			}, 500);
+		}
+		setTimeout(laFuncion, 11000);
+
+
+
+		/*En caso de llegar dsde movimientos,Hubieron parametros temporales que se usaron para mostrar un comprobante antiguo, 
+		Ahora se procede a sustituir las variables por los parametros actuales para que no se modifiquen   */
+
+		//Detectamos si se lleva desde final.html o desde comprob.html
+		var urlActual = window.location.href;
+		if (urlActual.includes("TempRemiNombre")) {
+
+			RemiNombre = urlParams.get('TempRemiNombre');
+			RemiCuit = urlParams.get('TempRemiCuit');
+			RemiCbu = urlParams.get('TempRemiCbu');
+			RemiMotivo = urlParams.get('TempRemiMotivo');
+
+
+			DestiNombre1 = urlParams.get('TempDestiNombre1');
+			DestiNombre2 = urlParams.get('TempDestiNombre2');
+			DestiCuit = urlParams.get('TempDestiCuit');
+			DestiCbuDest = urlParams.get('TempDestiCbuDest');
+			DestiCuenta = urlParams.get('TempDestiCuenta');
+			DestiTipo = urlParams.get('TempDestiTipo');
+
+
+		}
+
+
+
+		var backButton = document.getElementById("logo");
+		backButton.addEventListener("click", function () {
+			window.history.back();
+		});
+
+		window.addEventListener('goBack', function () {
+			window.history.back();
+		});
+	</script>
+
+</body>
+
+</html>

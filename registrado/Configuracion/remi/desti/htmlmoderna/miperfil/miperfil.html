@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+		<link rel="preload" as="font" href="ProximaNovaRegular.ttf" type="font/ttf" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		<div id="content" style="display: none;">  
+			
+			<div class="imagen-fija"><img id="img1" src="img1.jpg"></img></div>
+			
+			<div class="nombremail" id="nombremail">
+				<div class="nombre">				 
+					<b><span id="nombre">Juan Lambigue</span>	</b>			 
+				</div>
+				
+				<div class="email">				 
+					<span id="email">JuanLam22@gmail.com</span>				 
+				</div>
+				
+				
+			</div>			
+			<img id="img2" src="img2.jpg">			
+			<img id="img3" src="img3.jpg">
+			
+			<div class="identidad" id="identidad" style="display: none;">
+				<div class="nombreId">				 
+					<span id="nombreId">Juan Lambigue</span> 		 
+				</div>
+				
+				<div class="cuit">				 
+					<span id="cuit">20-20000-2</span>				 
+				</div>
+				<img id="imgId" src="ident.jpg">
+				
+			</div>	
+			
+			
+			
+			
+		</div>
+		
+		
+ 		
+		
+		
+		
+		
+		
+		
+		<script src="script.js"></script>
+		
+		<script>
+			
+			window.onload = function () {
+				var loader = document.getElementById("loader");
+				var content = document.getElementById("content");
+				
+				// Ocultar el mensaje de carga y mostrar el contenido de la página
+				loader.style.display = "none";
+				content.style.display = "block";
+				
+			};
+			
+			
+			
+			const queryString = window.location.search;
+			//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+			const urlParams = new URLSearchParams(queryString);
+			
+			const RemiNombre = urlParams.get('RemiNombre');
+			var RemiCuit = urlParams.get('RemiCuit');
+			const RemiCbu = urlParams.get('RemiCbu');
+			var RemiSaldo = urlParams.get('RemiSaldo');
+			const RemiMotivo = urlParams.get('RemiMotivo');  
+			const DestiNombre1 = urlParams.get('DestiNombre1');  
+			const DestiNombre2 = urlParams.get('DestiNombre2'); 
+			const DestiAlias = urlParams.get('DestiAlias');
+			const DestiCbuDest = urlParams.get('DestiCbuDest');
+			var DestiCuit = urlParams.get('DestiCuit');
+			const DestiCuenta = urlParams.get('DestiCuenta');
+			const DestiTipo = urlParams.get('DestiTipo');
+			const DestiImagen = urlParams.get('DestiImagen');
+			var monto = urlParams.get('monto');
+			var hora = urlParams.get('hora');
+			var TresCod = urlParams.get('TresCod');
+			
+			
+			
+			const fechaActual2 = new Date(); 
+			
+			document.getElementById("nombre").innerHTML = RemiNombre; 
+			
+			//generar email
+			const palabras = RemiNombre.split(' ');
+			const primeraPalabra = palabras[0];
+			const ultimaPalabra = palabras[palabras.length - 1]; 
+			const primeraPalabraFormateada = primeraPalabra.replace(/\s+/g, '_').toLowerCase();
+			const ultimaPalabraFormateada = ultimaPalabra.replace(/\s+/g, '_').toLowerCase(); 
+			const primeraLetraNombre = primeraPalabraFormateada.charCodeAt(0) - 'a'.charCodeAt(0); 
+			const primeraLetraApellido = ultimaPalabraFormateada.charCodeAt(0) - 'a'.charCodeAt(0); 
+			const numeroRelacionado = `${primeraLetraNombre}${primeraLetraApellido}`;
+			const email = `${primeraPalabraFormateada}.${ultimaPalabraFormateada}${numeroRelacionado}@gmail.com`;
+			document.getElementById("email").innerHTML = email; 
+			
+			
+			//Click para ver identidad 		
+			
+			document.getElementById("img2").addEventListener("click", function () {
+				const pantalla1 = document.getElementById('nombremail');
+				const pantallaId = document.getElementById('identidad');
+				pantalla1.style.display = 'none';
+				document.getElementById('img2').style.display = 'none';
+				document.getElementById('img3').style.display = 'none';
+				pantallaId.style.display = 'block';
+				document.getElementById("img1").src ="img1ident.jpg"
+				pant = "2";
+				document.getElementById("nombreId").innerHTML = RemiNombre;
+				document.getElementById("cuit").innerHTML = RemiCuit; 
+				
+			});
+			
+			//Click En otro lado	
+			
+			document.getElementById("img3").addEventListener("click", function () {
+				window.open("../finishim32.html", '_self');				
+			});
+			
+		    document.getElementById("imgId").addEventListener("click", function () {
+				window.open("../finishim32.html", '_self');				
+			});
+			
+			
+			
+			
+			// Deshabilitar el zoom táctil
+			document.addEventListener('touchstart', function(event) {
+				if (event.touches.length > 1) {
+					event.preventDefault();
+				}
+			}, { passive: false });
+			
+			document.addEventListener('touchmove', function(event) {
+				if (event.touches.length > 1) {
+					event.preventDefault();
+				}
+			}, { passive: false });
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

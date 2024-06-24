@@ -1,0 +1,141 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+	font-family: 'Roboto', sans-serif;
+}
+
+.fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#fondo1 {
+    background-image: url('fondo1.jpg');
+    background-size: cover;
+	width:100%;
+}
+
+#fondo1 img{	
+	width:100%;
+}
+
+#fondo2 {
+    background-image: url('fondo2.jpg');
+    background-size: cover;
+}
+
+#btnCont {
+    width:100%;
+	position:absolute;
+	bottom:0;
+	left: 0;
+}
+
+#fondoClave {
+    width:100%;
+	position:absolute;
+	top:0;
+	left: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+}
+
+.mensaje {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: none;
+	height: 33%;
+	text-align:center;
+	
+}
+
+.texto {
+    font-size: 20px;
+    padding: 20px;
+	color:white;
+}
+
+.mensaje span{
+    font-size: 14px;
+    padding: 20px;
+	color:white;
+}
+
+.mensaje a{
+    font-size: 18px;
+    padding: 20px;
+	color:white;
+}
+.mensaje  img{ 
+	width: 20%;
+	border-radius:40px;
+	 
+}
+
+
+
+/* ...PIN ... */
+
+.mensaje-pin {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: none;
+    height: 90%;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 20px;
+    padding: 20px;
+    color: white;
+}
+
+.input-pin {
+    width: 83%;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    outline: none;
+    padding: 5px;
+    font-size: 18px; 
+    text-align: center;
+    line-height: normal;
+    padding-top: 15px;  
+}
+
+
+@keyframes aparecer {
+    from {
+        bottom: -300px;
+	}
+    to {
+        bottom: 0;
+	}
+}

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400&display=swap');
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('ProximaNovaRegular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.spinner {
+	margin: 0 auto;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+    min-height: 100vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Proxima Nova', sans-serif;
+    margin: 0;
+    padding: 0; 
+    min-height: 100vh; /* Asegura que el gradiente cubra toda la altura de la ventana */
+	
+	
+}
+
+#content {
+    align-items: center;
+}
+
+#img1 {
+	
+	width: 100%;
+	top: 0;
+	height: 50%;
+}
+
+
+
+.imagen-fija {
+	
+	position:fixed; 
+	z-index:9999;
+	top: 0;
+}
+
+.import {
+    position: relative;
+    width: 100%;
+	margin-top: 21%;
+}
+
+.numero {
+    position: absolute; 
+    padding: 5px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.numero-superior {
+	top: 5%;
+	left: 7%;
+	margin-bottom: 10px;
+	font-size: 28px;
+}
+
+.numero-inferior {
+	top: 10.6%;
+	right: 12.5%;
+	font-size: 16px;
+}
+
+.monto {
+    margin-right: 5px;
+}
+
+.montoDec { 
+	font-size: 15px;
+	margin-top: -7px;
+	margin-left: -3px;
+}
+
+.montoDecInf {
+	font-size: 9px;
+	margin-top: -3px;
+	margin-left: -4px;
+}
+#monto2 {
+    width: 100%;
+	}
+
+
+#img2 {
+    width: 100%;
+}
+
+.numero-grafico {
+	display: block;
+	top: 76%;
+	right: 32%;
+	font-size: 24px;
+	text-align:center;
+}

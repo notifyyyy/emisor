@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <link rel="stylesheet" href="styles.css">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		<div id="content" style="display: none;">  
+			
+			<div class="imagen-fija"><img id="img1" src="img1.jpg"></img></div>
+			
+			
+            
+			<div id="transferencias">
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					<div id="izq">
+						<span id="ico"><b>ML</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia enviada</span>
+							<span style="font-size:13px; color:gray">a Macos Javier Lopez</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span>-$25.500,00</span> 
+							<span style="font-size:13px; color:gray;text-align: right;">Ayer</span>
+						</div>
+					</div>
+				</div>	
+				
+				
+				
+				
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">	
+					
+					<div id="izq">
+						<span id="ico"><b>SV</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia recibida</span>
+							<span style="font-size:13px; color:gray">a Sofia Antonella Vergara</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: green;">+$4.500,00</span> 
+							<span style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<img id="icoIMG" src="logos/ypf.png"></img>
+						<div id="izqText">
+							<span style="display: block ruby;">Pago con QR          </span>
+							<span style="font-size:13px; color:gray;">YPF</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: black;">-$2.000,05</span> 
+							<span data-dias="2" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<span id="ico"><b>EB</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia enviada</span>
+							<span style="font-size:13px; color:gray">a Emiliano Luis Barbera</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: black;">-$1.800,00</span> 
+							<span data-dias="4" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<img id="icoIMG" src="logos/claro.png"></img>
+						<div id="izqText">
+							<span style="display: block ruby;">Pago de servicio     </span>
+							<span style="font-size:13px; color:gray">Claro</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: black;">-$1.958,00</span> 
+							<span data-dias="4" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>	
+				
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">	
+					
+					<div id="izq">
+						<span id="ico"><b>LR</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia recibida</span>
+							<span style="font-size:13px; color:gray">de Lucas David Rivarola</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: green;">+$5000,00</span> 
+							<span data-dias="5" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">	
+					
+					<div id="izq">
+						<span id="ico"><b>LG</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia recibida</span>
+							<span style="font-size:13px; color:gray">de Lucia Yésica Gallo</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: green;">+$2300,00</span> 
+							<span data-dias="6" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<img id="icoIMG" src="logos/MC.png"></img>
+						<div id="izqText">
+							<span style="display: block ruby;">Pago con QR          </span>
+							<span style="font-size:13px; color:gray">McDonald's</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: black;">-$4.900,00</span> 
+							<span data-dias="7" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>	
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<span id="ico"><b>EB</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia enviada</span>
+							<span style="font-size:13px; color:gray">a Emiliano Luis Barbera</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div id="izqText">
+							<span style="color: black;">-$700,00</span> 
+							<span data-dias="7" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">
+					
+					<div id="izq">
+						<img id="icoIMG" src="logos/ypf.png"></img>
+						<div id="izqText">
+							<span style="display: block ruby;">Pago con QR          </span>
+							<span style="font-size:13px; color:gray;">YPF</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div style="display: grid;">
+							<span style="color: black;">-$3.000,05</span> 
+							<span data-dias="7" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">	
+					
+					<div id="izq">
+						<span id="ico"><b>FR</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia recibida</span>
+							<span style="font-size:13px; color:gray">de Fabián Richiero</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div style="display: grid;">
+							<span style="color: green;">+$7000,00</span> 
+							<span data-dias="9" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				<div style="display: flex; justify-content: space-between;align-items: center;margin-bottom: 8%;">	
+					
+					<div id="izq">
+						<span id="ico"><b>DG</b></span>
+						<div id="izqText">
+							<span style="display: block ruby;">Transferencia recibida</span>
+							<span style="font-size:13px; color:gray">de David Esteban Gonzalez</span>
+						</div>
+					</div>
+					
+					<div id="der">
+						
+						<div style="display: grid;">
+							<span style="color: green;">+$2300,00</span> 
+							<span data-dias="9" style="font-size:13px; color:gray;text-align: right;">Miércoles</span>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				
+			</div>
+			
+			
+			
+			<div class="pie"><img id="img2" src="img2.png"></img></div> 
+			
+			
+			
+			
+			
+		</div>
+		
+		
+	</div>			
+	
+	
+	
+	
+	
+	
+	<script src="script.js"></script>
+	
+	<script>
+		function restarFecha(dias) {
+			const fechaActual = new Date();
+			fechaActual.setDate(fechaActual.getDate() - dias);
+			
+			const dia = fechaActual.getDate();
+			const mes = obtenerNombreMes(fechaActual.getMonth());
+			
+			return `${dia} de ${mes}`;
+		}
+		
+		function obtenerNombreMes(numeroMes) {
+			const meses = [
+			"enero", "febrero", "marzo", "abril", "mayo", "junio",
+			"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+			];
+			
+			return meses[numeroMes];
+		}
+		
+		function cargarFechas() {
+			const spans = document.querySelectorAll("span[data-dias]");
+			
+			spans.forEach(span => {
+				const dias = parseInt(span.getAttribute("data-dias"));
+				const fechaRestada = restarFecha(dias);
+				span.textContent = fechaRestada;
+			});
+		}
+		
+		
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+			
+			// Ocultar el mensaje de carga y mostrar el contenido de la página
+			loader.style.display = "none";
+			content.style.display = "block";
+			cargarFechas();
+		};
+		
+		function siguiente() {
+			var front = document.getElementById("front");
+			front.style.transition = "transform 0.8s ease";
+			front.style.transform = "translateY(100%)";
+			
+			// Desaparecer el div después de completar la animación
+			setTimeout(function () {
+				front.style.display = "none";
+			}, 300);
+		}
+		
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+		
+		const RemiNombre = urlParams.get('RemiNombre');
+		var RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');  
+		const DestiNombre1 = urlParams.get('DestiNombre1');  
+		const DestiNombre2 = urlParams.get('DestiNombre2'); 
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		var DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+		
+		
+		   
+		
+		monto = monto.replace(/,.*|[^0-9]/g, "");
+		
+		if(monto != "0"){
+			
+			agregarNuevaEntrada(monto,nombre);
+			
+		}
+		
+		
+		
+				// PROVISORIO 
+				
+			   /*
+			  var entrada = {
+				nombre: "Play Mendoza S.A. .-",
+				nombreComp:"Petra nombre comp",
+				codigo: "3333",
+				monto: "12600",
+				fecha: "10 de agostos - 20:30 hs",
+				cbu: "323petr232",
+				cuit: "111petra11111",
+				motivo: "Feliz cumple",
+				tipo:"Cuenta petrbancaria",
+				billetera: "Mercado petraPago",
+				urlimg: "no",
+				Rnombre:"EnviadorEnMov",
+		        Rcuit: "000CuitEm",
+		        Rcbu: "6556cbuEm"
+				
+				};
+				
+				var entradaJSON = JSON.stringify(entrada);
+				
+			   localStorage.setItem("entrada_1", entradaJSON);      */     
+		
+		
+		
+		
+		
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+		
+		document.addEventListener('touchmove', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+		
+		
+		
+		
+		
+		
+		
+	</script>
+	
+</body>
+</html>

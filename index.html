@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Navigation PageDesign/Lesson</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="sara mazal lessons">
+  <meta name="keywords" content="HTML, CSS, JavaScript, mazal, icons">
+  <meta name="author" content="Sara Mazal">
+  <!--  SGVsbG8hIE15IG5hbWUgaXMgU2FyYSBNYXphbC4gV2VsY29tZSB0byBteSBDb2RlUGVuIQ== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Raleway:wght@100;200;300;400;500&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <!-- SGVsbG8hIE15IG5hbWUgaXMgU2FyYSBNYXphbC4gV2VsY29tZSB0byBteSBDb2RlUGVuOiBodHRwczovL2NvZGVwZW4uaW8vU2FyYW1hemFsICYgR2l0SHViOiBodHRwczovL2dpdGh1Yi5jb20vc2FyYW1hemFs -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <div id="identificador" style="display: none;">NONE</div>
+
+  <div id="alerta" style="display: none; position: fixed;
+  border-radius: 10px;
+  top: 10%;
+  background: black;
+  color: #03dac6;
+  z-index: 999999;
+  width: 70%;
+  left: 15%;padding: 5%;border: solid;">
+    <spam><b>ATENCIÓN:</b></spam><br><br>
+    <li>
+      <spam>La única persona autorizada por FURTIVE APK para recibir donaciones es: <br><b>
+          <spam id="titu">Nombre</spam>
+        </b><br> Alias: <b>
+          <spam id="alias">alias</spam>
+        </b></spam>
+    </li><br>
+    <li>
+      <spam>La única página oficial es: <br><b>
+          <spam id="pag">pagina</spam>
+        </b></spam>
+    </li><br>
+    <li>
+      <spam>El único medio de contacto es: <br><b>
+          <spam id="correo">correo</spam>
+        </b></spam>
+    </li><br>
+    <button id="entendido">Entendido</button>
+  </div>
+  <!-- partial:index.partial.html -->
+  <sectio class="nav">
+    <h1 id="title">FURTIVE APK</h1>
+    <h3 class="span loader"><span class="m">F</span><span class="m">U</span><span class="m">R</span><span
+        class="m">T</span><span class="m">I</span><span class="m">V</span><span class="m">E</span><span
+        class="m">-</span><span class="m"></span><span class="m">A</span><span class="m">P</span><span
+        class="m">K</span><span class="m">.</span><span class="m">P</span><span class="m">R</span><span class="m">O</h3>
+    <div class="nav-container"><a class="nav-tab" href="#tab-svelte">INICIAR SESIÓN</a><a class="nav-tab"
+        href="#tab-vite">INVITADO</a><span class="nav-tab-slider"></span></div>
+  </sectio>
+  <main class="main">
+    <section class="slider" id="tab-svelte">
+      
+        <h1 id="titulo">INICIAR SESIÓN</h1>
+        <h2 id="name" style="font-size: 100%"> </h2><br>
+        <div class="group">
+          <input type="tel" id="dni" pattern="[0-9]*" inputmode="numeric">
+          <label for="dni">DNI</label>
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/simple-and-round-line-mark/down-arrow-56.png" alt=""
+            class="letter">
+          <div class="alert"></div>
+          <div class="sc"></div>
+        </div>
+        <div class="load-bar" id="barraCarga" style="display: none;">
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+        </div>
+        <button id="continuar">Continuar</button>
+        <span id="crear" style="margin-top: 5%; color: rgb(3, 218, 198);">¿No tienes una cuenta? <a id="crearCuenta"
+            href="#" style="color: inherit;text-decoration: underline;">Consigue una.</a></span>
+
+      
+
+    </section>
+
+    <section class="slider" id="tab-vite">
+      <h1>INVITADO</h1>
+      <h2>Entra a echar un vistazo!</h2>
+      <button onclick='window.location.href = "invitado/index.html"'>Ingresar</button>
+    </section>
+  </main>
+
+  <div id="intentos" style="display: none;">
+
+  </div>
+
+  <canvas class="background"></canvas><!-- SGVsbG8hIE15IG5hbWUgaXMgU2FyYSBNYXphbC4gV2VsY29tZSB0byBteSBDb2RlUGVuIQ== -->
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

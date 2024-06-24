@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		<div id="content" style="display: none;">  
+			
+            
+			<div id="div1">
+				<img id="encabeza" src="enca.jpg" onclick="detectarClick(event)"></img>  
+			</div>
+			
+			<div id="div2">
+				<img src="boton.jpg" alt="Botón" id="show-form-button" />
+			</div>
+			
+			<div id="div3">
+				<img src="lista.jpg" alt="Lista" />
+			</div>
+			
+		</div>			
+		
+		
+		<!-- Flecha de retroceso -->
+        <div id="back-arrow">
+			<i class="fa-solid fa-arrow-left fa-xs" id="hide-form-button"></i>
+			
+		</div>
+		
+        <!-- Texto y formulario de cuenta -->
+        <div id="add-account-text">Agregá una cuenta</div>
+        <input type="text" id="account-input" placeholder="Ingresá el CBU, CVU o alias" />
+		<div id="aviso">
+			<i id="alert" class="fa-solid fa-circle-exclamation fa-xs" style="color: #ff0000;"></i> 
+			<div id="nota">Ingresá el CBU, CVU o alias</div>
+		</div>
+        <div id="continue-button">Continuar</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<script src="script.js"></script>
+	<script>
+		
+		
+			window.onload = function () {
+				var loader = document.getElementById("loader");
+				var content = document.getElementById("content");
+				setTimeout(function () {
+									// Ocultar el mensaje de carga y mostrar el contenido de la página
+				loader.style.display = "none";
+				content.style.display = "block";
+					
+				}, 1500);
+
+				
+			};
+		
+		
+		
+		
+		
+		//GET INFO PARAMS  
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+		const RemiNombre = urlParams.get('RemiNombre');
+		const RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');  
+		const DestiNombre1 = urlParams.get('DestiNombre1');  
+		const DestiNombre2 = urlParams.get('DestiNombre2'); 
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		const DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+		
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+		
+		document.addEventListener('touchmove', function(event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+	</script>
+	
+</body>
+</html>

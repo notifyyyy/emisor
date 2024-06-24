@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> 
+        <link rel="stylesheet" href="styles.css">
+		<link rel="preload" as="font" href="ProximaNovaRegular.ttf" type="font/ttf" crossorigin="anonymous">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		
+		<!-- ANIMACION NOTIFICACION -->
+		
+		<div class="circle-container" id="notificacionContainer">
+			<div class="conte" >
+				<div class="circle2">
+					<img src="logoNoti.jpg" alt="Logo" class="circle2-image">
+				</div>
+				<div class="text">
+					<b><span>Enviaste $ <span id="montoNoti"></span></span>  <span id="horaNoti"></span></b><br>
+					<span id="des">Ya enviamos tu transferencia a <span id="nombreNoti"></span></span> 
+				</div>
+				<div class="logo2">
+					<img src="logoNoti2.png">
+				</div>
+			</div>
+		</div>
+		
+		
+		<div id="content" style="display: none;">  
+			
+			
+			
+			
+            <div id="div1">
+			    <div class="x"></div>
+				<div id="div11">
+					<h1>¡Listo! Ya hiciste tu  <br> transferencia</h1>
+					<div class="circle">
+						<img src="user.jpg" id="imagen" class="circle-image">
+						<div class="checkmark">
+							<i class="fas fa-check"></i>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div id="div12">
+					<h1>A <span id="name"></span></h1>
+				</div>
+				
+				<div id="div13">
+					<span id="billetera"></span> 
+				</div>
+				
+                
+			</div>
+			
+			<div id="div2">
+				<h1>$ <span id="mont"></span></h1>				
+				<span style="font-size: 13px;color: gray;">Motivo: <span id="moti" style="font-size:13px;color:gray"></span></span>  
+				
+			</div>
+			
+			<div id="div3">
+				<img src="image2.jpg"></img> 
+			</div>
+			<h1></h1>
+			<div id="div4">
+				
+			<button id="btn1">Compartir comprobante</button>	
+				
+				<button id="btn3">Ir al inicio</button>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		<script>
+			window.onload = function () {
+				var loader = document.getElementById("loader");
+				var content = document.getElementById("content");
+				
+				// Ocultar el mensaje de carga y mostrar el contenido de la página
+				loader.style.display = "none";
+				content.style.display = "block";
+			};
+			
+			function VolverFisico(){
+				window.history.back();				
+			}
+			
+			function siguiente() {
+				var front = document.getElementById("front");
+				front.style.transition = "transform 0.8s ease";
+				front.style.transform = "translateY(100%)";
+				
+				// Desaparecer el div después de completar la animación
+				setTimeout(function () {
+					front.style.display = "none";
+				}, 300);
+			}
+			
+			
+			//GET INFO PARAMS  
+			const queryString = window.location.search;
+			//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+			const urlParams = new URLSearchParams(queryString);
+			
+			const RemiNombre = urlParams.get('RemiNombre');
+			const RemiCuit = urlParams.get('RemiCuit');
+			const RemiCbu = urlParams.get('RemiCbu');
+			var RemiSaldo = urlParams.get('RemiSaldo');
+			const RemiMotivo = urlParams.get('RemiMotivo');  
+			const DestiNombre1 = urlParams.get('DestiNombre1');  
+			const DestiNombre2 = urlParams.get('DestiNombre2'); 
+			const DestiAlias = urlParams.get('DestiAlias');
+			const DestiCbuDest = urlParams.get('DestiCbuDest');
+			const DestiCuit = urlParams.get('DestiCuit');
+			const DestiCuenta = urlParams.get('DestiCuenta');
+			const DestiTipo = urlParams.get('DestiTipo');
+			const DestiImagen = urlParams.get('DestiImagen');
+			var monto = urlParams.get('monto');
+			var hora = urlParams.get('hora');
+			var notificacion = urlParams.get('notificacion');
+			var TresCod = urlParams.get('TresCod');
+			
+			document.getElementById("montoNoti").innerHTML = monto;
+			document.getElementById("nombreNoti").innerHTML = DestiNombre1.substring(0, 6) + " ...";
+			document.getElementById("mont").innerHTML = monto;
+			document.getElementById("moti").innerHTML = RemiMotivo;
+			document.getElementById("name").innerHTML = DestiNombre1;
+			document.getElementById("billetera").innerHTML = DestiCuenta;
+			
+			
+			
+			
+			
+			if(DestiImagen !== "no"){ 
+			 	document.getElementById("imagen").src = DestiImagen; 
+			}
+			
+			
+			
+			
+			// Obtener la fecha actual
+			const fechaActual = new Date();
+			
+			const meses = [
+			"enero", "febrero", "marzo", "abril", "mayo", "junio",
+			"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+			];
+			
+			const dia = fechaActual.getDate();
+			const mes = fechaActual.getMonth();
+			const anioActual = fechaActual.getFullYear();
+			
+			const fechaFormateada = `${dia} de ${meses[mes]}`;
+			
+			
+			// Obtener la fecha y hora actual en la zona horaria de Argentina
+			const options = {
+				timeZone: 'America/Argentina/Buenos_Aires',
+				hour: 'numeric',
+				minute: 'numeric'
+			};
+			
+			const horaActualArgentina = fechaActual.toLocaleString('es-AR', options);
+			
+			
+			//Generar codigo de transferencia.
+			function generarNumeroAleatorio() {
+				const min = 10000000; // El número mínimo de 8 dígitos
+				const max = 99999999; // El número máximo de 8 dígitos
+				const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+				return numeroAleatorio;
+			}
+			//Armar fecha
+			if(hora=="Actual"){
+				hora = horaActualArgentina;
+			}
+			var codT = TresCod + generarNumeroAleatorio();
+			var fecha  = fechaFormateada + " - " + hora + " hs.";
+			
+			
+			// Activar notificacion y vibracion
+			
+			var btn = document.getElementById("btn1");
+			btn.addEventListener("click", function(event) {
+				
+				var x = event.clientX - btn.getBoundingClientRect().left;
+				
+				var buttonWidth = btn.offsetWidth;
+				
+				
+				if (x < buttonWidth / 2) {
+					// Acción para el lado izquierdo SIN NOTIFICACION
+					notificacion = "no"; 
+					document.body.style.backgroundColor = '#ffffff';
+					window.open("comprobante/comprobante.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=" + monto + "&fecha=" + fecha + "&hora=" + hora + "&codT=" + codT + "&TresCod=" + TresCod + "&notificacion=" + notificacion, '_self');	
+					} else {
+					// Acción para el lado derecho CON NOTIFICACION
+					notificacion = "si"; 
+					document.body.style.backgroundColor = '#ffffff';
+					window.open("comprobante/comprobante.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=" + monto + "&fecha=" + fecha + "&hora=" + hora + "&codT=" + codT + "&TresCod=" + TresCod + "&notificacion=" + notificacion, '_self');
+					
+				}
+			});
+			
+			//HORA DE NOTIFICACION			
+			var fechaActual2 = new Date();
+			
+			
+			var horas2 = fechaActual2.getHours();
+			
+			var minutos2 = fechaActual2.getMinutes();
+			
+			var horaActual2 = horas2 + ":" + minutos2;
+			
+			
+			if(hora=="Actual"){
+				document.getElementById("horaNoti").innerHTML = horaActual2;
+				}else{							
+				document.getElementById("horaNoti").innerHTML = hora;
+			} 
+			
+			
+			
+			//ANIMACION NOTIFICACION
+ 
+			
+			
+			var notificacionContainer = document.getElementById("notificacionContainer");
+			
+			if (notificacion === "no") {
+				notificacionContainer.style.display = "none";					
+				
+			}
+			
+			
+			
+			// Desaparece por click
+			notificacionContainer.addEventListener("touchstart", function() {
+				notificacionContainer.classList.add("fade-out");    
+				setTimeout(function() {
+					notificacionContainer.style.display = "none";
+				}, 500);  
+			});
+			
+			// Desaparece por tiempo
+			function laFuncion() {
+				
+				notificacionContainer.classList.add("fade-out");    
+				setTimeout(function() {
+					notificacionContainer.style.display = "none";
+				}, 500); 
+			}
+			setTimeout(laFuncion, 11000);
+			
+			
+			document.getElementById("btn3").addEventListener("click", function() {				
+				window.open("../../../../index.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=" + monto + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+				
+			});
+			
+			
+			
+			
+			// Deshabilitar el zoom táctil
+			document.addEventListener('touchstart', function(event) {
+				if (event.touches.length > 1) {
+					event.preventDefault();
+				}
+			}, { passive: false });
+			
+			document.addEventListener('touchmove', function(event) {
+				if (event.touches.length > 1) {
+					event.preventDefault();
+				}
+			}, { passive: false });
+			
+			
+			// Desactiva el scroll utilizando JavaScript
+			function disableScroll() {
+				window.addEventListener('scroll', noScroll);
+			}
+			
+			function enableScroll() {
+				window.removeEventListener('scroll', noScroll);
+			}
+			
+			function noScroll() {
+				window.scrollTo(0, 0);
+			}
+			
+			// Activa/desactiva el scroll según sea necesario
+			disableScroll();
+		</script>
+		<script src="storage.js"></script>
+	</body>
+</html>

@@ -1,0 +1,204 @@
+/* Estilos del spinner */
+.spinner {
+	margin: 0 auto;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+	background: #ececec;
+    min-height: 100vh;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    font-family: "Bariol", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;  
+		
+}
+
+#content {
+    align-items: center;
+}
+
+#img1 {
+	 
+	width: 100%;
+	top: 0;
+	height: 50%;
+}
+
+#div1{
+	margin-top:3%;
+	text-align: center;
+	}
+#div1 span {
+ color:#2f2b2b;
+ font-size: 15px;
+}
+
+#div2 {
+	margin-top: 1%;
+	background: white;
+	position: relative;
+	padding: 3% 3%;
+	width: 86%;
+	margin-left: 4%;
+	border-radius: 5px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#div2 span {
+ color:#443f3f;
+ font-size: 14px; 
+}
+
+
+#img2 {
+	margin-top: 2%; 
+	width: 100%;
+ 
+}
+
+#img3 {
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	margin-top: 2%;
+}
+
+
+
+
+
+
+
+
+
+
+#transferencias{
+	position: relative;
+	top: 0;
+	left: 0;
+	margin-top:76%; 
+	padding-bottom: 1%;
+	display: grid;
+ 
+}
+
+#ico {
+	border: solid 1px #c4bfbf;
+	border-radius: 50%;
+	margin-left: 2%;
+	margin-right: 4%;
+	width: 11%;
+	height: auto;
+	padding: 3%;
+	align-items: center;
+	display: flex;
+}
+
+#ico2 {
+	border: solid 1px #000;
+	border-radius: 50%;
+	margin-left: 2%;
+	margin-right: 4%;
+	width: 8px;
+	height: 8px;
+	padding: 6px;
+	align-items: center;
+	display: flex;
+}
+
+
+
+#icoIMG {
+	border: solid 1px #68666675;
+	/* padding: 10px; */
+	border-radius: 50%;
+	letter-spacing: 1px;
+	margin-left: 8%;
+	margin-right: 4%;
+	height: 44px;
+}
+
+ 
+
+
+
+
+#transferencias span {	
+	font-size: 16px;
+	color:#424040;
+}
+
+
+
+#izq {
+    display: flex;
+     align-items: center;
+}
+
+#der {
+ 
+ 	margin-right: 4%;
+}
+
+
+#izq2 {
+ display:inline-block;
+}
+
+#enc1{
+	
+	display: flex;
+	justify-content: space-between;
+	
+}
+#enc2{
+	margin-top: 5%;	
+}
+#enc3{
+	margin-top: 6%;	
+}
+#enc3 img{
+	width: 100%;
+	
+}
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

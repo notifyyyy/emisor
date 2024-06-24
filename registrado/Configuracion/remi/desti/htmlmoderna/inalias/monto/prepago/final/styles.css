@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700");
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('ProximaNovaRegular.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Estilos del spinner */
+.spinner {
+	margin: 0 auto;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #f3f3f3;
+	border-top: 2px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Proxima Nova', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to top, #f1f1f1 80%, #52b065d4 90%, #00a650 100%);
+    height: 100vh;
+	
+}
+
+
+.circle {
+	width: 44px;  
+	height: 44px;  
+	background-color: transparent; 
+	border: 2px solid #2ea82e;  
+	border-radius: 50%;  
+	position: relative;
+	margin-right: 9px;
+    margin-top: 10px;
+}
+
+.checkmark {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 16px;
+	height: 16px;
+	background-color: #2ea82e;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.checkmark i {
+	color: white;  
+	font-size: 10px;  
+}
+
+.circle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+    border-radius: 50%; /* Asegura que la imagen esté dentro del círculo */
+}
+
+.x {
+	position: absolute;
+	width: 85%;
+	height: 100px;
+}
+
+.x::before,
+.x::after {
+	content: "";
+	position: absolute;
+	width: 1px;
+	height: 16%;
+	background-color: white;
+	top: -29%;
+	left: 100%;
+	transform: translateX(-50%);
+}
+
+.x::before {
+    transform: translate(-50%, -50%) rotate(45deg); /* Gira la línea superior 45 grados */
+}
+
+.x::after {
+    transform: translate(-50%, -50%) rotate(-45deg); /* Gira la línea inferior -45 grados */
+}
+
+#content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	
+	
+}
+
+/* Asegúrate de que estos divs tengan un ancho máximo */
+#div1,
+#div2,
+#div3,
+#div4 {
+	
+	margin: 0 auto; /* Centra horizontalmente los divs internos */
+}
+
+
+#div1 {
+	background: #fff;
+	padding-left: 14px;
+	width: 85%;
+	margin-top: 20%;
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+	padding-right: 10px;
+	padding-bottom: 3%;
+}
+
+#div11 {
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center;
+	margin-bottom: -17px;
+}
+
+#div1 h1{
+	font-size:19px;
+	
+	color: #2b2a2a;
+	
+}
+
+#div12 h1 {
+	
+    font-size: 19px;  
+    color:#04a401;
+	
+}
+
+
+#div13 span {
+	font-size: 15px;
+	color: #595656;
+}
+
+#div2 {
+	background: #fff;
+	padding-left: 14px;
+	width: 85%;
+	padding-top: 1px;
+	margin-top:3%;
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+	padding-right: 10px;
+	padding-bottom: 3%;
+}
+
+#div2 h1 {
+	
+    font-size: 22px;   
+    margin-bottom: 1px;
+}
+
+
+
+#div3 {
+	background: #fff;
+	
+	width: 91%;
+	margin-top: 3%;
+	border-radius: 5px;
+	box-shadow: 3px 7px 20px rgba(0, 0, 0, 0.2);
+	
+}
+
+
+
+#div3 img {
+	width:100%;
+}
+
+
+
+#div4 {
+	width: 91%;
+	margin-left: 4.5%;
+	margin-top: 3%;
+	bottom: 0;
+	position: fixed;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+button {
+	font-size: 18px;
+	width: 100%;
+	border-radius: 5px;
+	padding: 15px;
+	color: white;
+	font-family: 'Proxima Nova', sans-serif;
+	bottom: 2%;
+	border: none; 
+	margin-bottom:1.5%;
+	
+}
+
+
+#btn1{background:#009fe3;}
+
+
+#btn3{background:none; color:#009fe3} 
+
+
+/* ANIMACION NOTIFICACION */
+
+
+.circle-container {
+	margin-left: 2%;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	z-index: 99999999;
+	width: 96%;
+}
+
+.conte {
+	opacity:0; 
+	position: relative;
+	border-radius: 19px;
+	height: 58px;
+	display: flex;
+	animation: aparecer 0.3s 4s linear forwards;
+	margin-top: 8%;
+	width: auto; 
+	justify-content: space-between;
+}
+
+
+.circle2-image {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	margin-left: 3px;
+	margin-top: 10px;
+}
+
+.circle2 {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	margin-left: 2%;
+	margin-top: 2%;
+	margin-right: 2%;
+}
+
+
+
+.text {
+	font-family: 'Proxima Nova', sans-serif; 
+	padding-top: 11px;
+	padding-right: 33px;
+	font-size: 14px; 
+	color: white;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-left: 12%; 
+	position: absolute;
+}
+
+.logo2 {
+	margin-left: 4%;
+	margin-right: 4%;
+	margin-top: 5%;
+}
+.logo2 img {
+	width: 45px;
+	height: 25px;
+}
+
+#horaNoti{ 
+	font-size: 10px;
+	color: #b9b9b9;
+}
+#des{ 	 
+	color: #b9b9b9;
+}
+
+
+@keyframes aparecer {
+0% {
+opacity:0;        
+background-color:#0000;
+
+}
+100% {
+opacity:1;		
+background-color: #000000d4;
+width: auto;
+}
+}
+
+
+
+
+
+
+.fade-out {
+animation: chau 0.5s !important; 
+
+
+}
+
+
+@keyframes chau {
+0% {
+opacity:1;
+left:0%;
+}
+100% {
+opacity:0;
+left:100%;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

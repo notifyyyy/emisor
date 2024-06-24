@@ -1,0 +1,271 @@
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&family=Hind+Siliguri:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Average+Sans&display=swap');
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('ProximaNovaRegular.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+
+html {
+	font-family: 'Proxima Nova', sans-serif;
+}
+
+
+
+/* Estilos del spinner */
+.spinner {
+	margin: 0 auto;
+	width: 30px;
+	height: 30px;
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#back{
+	top: 0;
+	position: fixed;
+	width: 100%;
+}
+
+#back img{
+	width:100%;
+}
+
+
+
+#nam {
+	margin-top: 23%;
+	padding-top: 4px;
+	margin-left: 4%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	display: flex;
+	align-items: center;
+}
+
+#circle {
+	background-color: #d78ed7;
+	color: white;
+	font-size: 18px;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
+}
+
+#nombre {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 20px;
+	font-weight: 400;
+	opacity:0.8
+}
+
+
+
+#emojis {
+	top: 65.1%;
+	left: 6%;
+	width: 30px;
+        height: 30px;
+	position: absolute;
+	z-index:9999;
+}
+
+
+
+
+
+/*  ANIMACION */
+
+
+
+
+
+
+
+.visor-container {
+    display: flex;
+    align-items: center;
+    top: 0;
+    position: relative;
+}
+
+#signoVisor {
+	font-family: 'Proxima Nova', sans-serif;
+font-size: 25px;
+margin-top: -14px;
+position: fixed;
+margin-left: -17px;
+}
+
+#visor-wrapper {
+    display: contents;
+    
+}
+
+#visor {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 90px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    top: -28%;
+}
+
+#visorDec {
+	
+	font-family: 'Proxima Nova', sans-serif;
+	font-size: 25px;
+	text-align: right;
+	margin-top: -15px;
+	margin-left: -2px;
+}
+
+#disp {
+	position: absolute; 
+	left: 30%;
+}
+
+input::placeholder{
+	
+	color: black;
+	opacity:1;
+}
+
+
+.input-container {
+	position: absolute;
+	text-align: center; 
+	top: 18%;
+	opacity:0;
+}
+
+
+#numberInput {	 
+	font-size: 2px; 
+	width: 4px; 
+	background:aqua;	 
+}
+
+#numberDecimal {
+	font-size: 2px; 
+	width: 4px; 
+	background:aqua;
+}
+
+
+
+
+#content p{
+	
+	left: 32%;
+	position:absolute;
+	top:55%;
+	z-index:9999;
+	color:#666565;
+}
+
+
+#content2{
+	text-align: center;
+}
+
+#contboton {
+    position: fixed;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+
+#contboton img{
+	width:100%;
+}
+
+#inputBox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: white;
+	font-size: 22px;
+	width: 50%;
+	left: 13%;
+	top: 11%;
+	border: none; /* Elimina el borde */
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+/* Entrada de numeros subiendo con fade in */
+
+.char-animation {
+    display: inline-block;
+    opacity: 0;
+animation: fadeInUp 0.2s ease-in-out;
+animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+0% {
+opacity: 0;
+transform: translateY(20px);
+}
+
+50% {
+transform: translateY(-10px);
+}
+
+
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}

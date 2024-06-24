@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+	<h1>Destinatario</h1>
+	<p>
+		 Nombre: <b><span id="nombreDestinatario"></span></b><br>
+		 NombreComp: <span id="nombreCompDestinatario"></span><br>
+		 Alias: <span id="aliasDestinatario"></span><br>
+		 CBU: <span id="cbuDestinatario"></span><br>
+		 CUIT: <span id="cuitDestinatario"></span><br>
+		 Billetera: <span id="billeteraDestinatario"></span><br>
+		 Tipo: <span id="tipoDestinatario"></span><br>
+		 Imagen: <span id="imagenDestinatario"></span><br>
+	</p>
+
+	<h1>Remitente</h1>
+	<p>
+		 Nombre: <b><span id="nombreRemitente"></span></b><br>
+		 CUIT: <span id="cuitRemitente"></span><br>
+		 CBU: <span id="cbuRemitente"></span><br>
+		 Saldo: <span id="saldoRemitente"></span><br>
+		 Motivo: <span id="motivoRemitente"></span><br>
+	</p>
+
+	 <button id="irAConfiguracion">Ir a configuración</button>
+
+
+	<script>
+
+		//GET INFO PARAMS  
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+		const RemiNombre = urlParams.get('RemiNombre');
+		const RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');
+		const DestiNombre1 = urlParams.get('DestiNombre1');
+		const DestiNombre2 = urlParams.get('DestiNombre2');
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		const DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+
+
+
+		// Puedes utilizar JavaScript para actualizar los valores de los campos con datos reales.
+		document.getElementById('nombreDestinatario').textContent = DestiNombre1;
+		document.getElementById('nombreCompDestinatario').textContent = DestiNombre2;
+		document.getElementById('aliasDestinatario').textContent = DestiAlias;
+		document.getElementById('cbuDestinatario').textContent = DestiCbuDest;
+		document.getElementById('cuitDestinatario').textContent = DestiCuit
+		document.getElementById('billeteraDestinatario').textContent = DestiCuenta;
+		document.getElementById('tipoDestinatario').textContent = DestiTipo;
+		document.getElementById('imagenDestinatario').textContent = DestiImagen;
+
+		document.getElementById('nombreRemitente').textContent = RemiNombre;
+		document.getElementById('cuitRemitente').textContent = RemiCuit;
+		document.getElementById('cbuRemitente').textContent = RemiCbu;
+		document.getElementById('saldoRemitente').textContent = RemiSaldo;
+		document.getElementById('motivoRemitente').textContent = RemiMotivo;
+
+		document.getElementById('irAConfiguracion').addEventListener('click', function () {
+			window.open("../../remi.html", '_self');
+		});
+
+
+		window.addEventListener('goBack', function () {
+			window.history.back();
+		});
+
+
+	</script>
+
+</body>
+
+</html>

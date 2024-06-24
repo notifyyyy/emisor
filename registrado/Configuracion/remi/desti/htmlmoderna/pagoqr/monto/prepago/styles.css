@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&family=Hind+Siliguri:wght@300&display=swap');
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('ProximaNovaRegular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Estilos del spinner */
+.spinner {
+	margin: 0 auto;
+	width: 30px;
+	height: 30px;
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-top: 100%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+	}
+    100% {
+        transform: rotate(360deg);
+	}
+}
+
+
+
+body {
+    min-height: 100vh;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Proxima Nova', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+
+#content {}
+
+#lonja {
+	width:100%;        
+}
+
+
+
+#div1 {
+    margin-top: 10%;
+    padding-top: 5px;
+    margin-left: 3%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+}
+
+
+
+
+
+#div2 {
+	
+	text-align: center;
+	margin-top: 13vh;
+	margin-bottom: 5vh;
+	display: flow-root list-item;
+	align-items: center;
+	margin-bottom: 1%;
+}
+
+#ContenedorNombre {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards, slide-down 0.5s ease forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+.image-container {
+    width: 45px;
+    height: 45px;
+	border-radius: 50%; 
+	overflow: hidden;  
+	border: 2px solid #cccccc7a;  
+	display: inline flow-root list-item;
+}
+
+
+.image-container img {
+	width: 100%; 
+	height: 100%;  
+	object-fit: cover; 
+	
+}
+
+#div2 h1 {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 18px;   
+	line-height: 0.5;
+	opacity:0.8;
+}
+
+#name{
+	margin-bottom: 3px;
+}
+
+#div2 span {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 35px; 
+	
+}
+
+#div2 p {
+  color: #696969de;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 16px;
+  display: contents;
+}
+
+hr {
+    margin-top: 18vh;
+	border: none;
+	border-top: 1px solid #b5afafa8;
+	width: 80%;
+	margin-bottom: 3%;
+}
+
+#totales h1 {
+	font-family: 'Proxima Nova', sans-serif;
+	font-size: 19px;
+	
+}
+#totales {
+	
+    display: flex;  
+    justify-content: space-between;  
+    align-items: center;  
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+#txt {
+    margin-right: 10px;  
+}
+
+#monto-container {
+    display: flex;  
+}
+
+#txt2 {
+    margin-right: 5px; 
+	
+}
+#lonja2{
+	width:100%;
+}
+ 
+#divi {
+	position: relative;
+	display: inline-block; /* Ajusta esto según tus necesidades */
+}
+
+.texto-superior-derecha {
+	position: absolute;
+	top: 25px;
+	right: 30px;
+	
+	color: white;
+	padding: 5px 10px;
+	font-size: 12px;
+}
+
+
+
+
+#div4 {
+	font-family: 'Proxima Nova', sans-serif;
+	position: absolute;
+	align-items: center;
+	display: block;
+	width: 100%;
+	text-align: center;
+	bottom: 2%;
+	z-index: 999;
+}
+
+
+
+
+
+button {
+	font-family: 'Proxima Nova', sans-serif;
+	font-size: 18px;
+	background-color: #009fe3;
+	width: 90%;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;  
+	bottom: 2%;
+	border: none; 
+	background-image: url("img.jpg");
+	background-size: 500% 500%;
+  	transition: background-position 10s;
+	background-position: 40% 0;
+	
+}
+
+@keyframes moveBackground {
+	0% {
+		background-position: 40% 0;
+	}
+	30% {
+		background-position: 20% 0;
+	}
+	50% {
+		background-position: 0% 0;
+	}
+}
+
+button.clicked {
+	animation: none; /* Detener la animación al hacer clic */
+	background-position: 0% 0;
+	animation: moveBackground 8s cubic-bezier(0.1, 0.9, 0.1, 0.1) infinite;
+	animation-delay:1s;
+	
+}
+
+/* Define la animación de crecimiento y fade-in */
+@keyframes grow-fade-in {
+    0% {
+        transform: scale(0); /* Escala inicial (0 significa invisible) */
+        opacity: 0; /* Opacidad inicial (0 significa invisible) */
+	}
+    100% {
+        transform: scale(1); /* Escala final (1 significa tamaño normal) */
+        opacity: 1; /* Opacidad final (1 significa completamente visible) */
+	}
+}
+
+/* Aplica la animación a la clase "animate-icon" */
+.animate-icon {
+    animation: grow-fade-in 0.3s ease-in-out; /* Duración y función de temporización de la animación */
+}
+

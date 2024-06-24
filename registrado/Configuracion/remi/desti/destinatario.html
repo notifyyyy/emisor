@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+	<!-- partial:index.partial.html -->
+	<div id="container">
+		<div id="div1">
+			<img src="enca.jpg"></img>
+			<div id="nombree">
+				<span>Destinatarios</span>
+			</div>
+
+		</div>
+		<div id="content">
+			<p id="textoEnca">Aquí colocas los datos de la persona que <b>RECIBE</b> la transferencia. Podés
+				agregar todos los perfiles que desees.</p>
+			<ul id="favorite-links">
+
+
+			</ul>
+			<div id="new-link-button">
+				<button>Agregar</button>
+			</div>
+
+			<div id="codi">
+				<p>3 primeros dígitos del código de comprobante. Puedes revisar el código de una transferencia real y
+					colorcar los 3 primeros
+					dígitos aquí para una mayor veracidad. Si no tienes esta información dejalo como está.
+				</p>
+				<input type="text" id="miInput" value="644">
+				<button id="saveCod">Guardar</button>
+
+			</div>
+
+			<div id="add-link-form">
+				<label for="etiqueta"><b>Etiqueta:</b></label>
+				<input type="text" id="etiqueta">
+				<span style="margin-top: 5px;">Elige el nombre que quieras para identificar el perfil.</span>
+				<br><br>
+				<label for="nombre1"><b>Nombre:</b></label>
+				<input type="text" id="nombre1">
+				<span style="margin-top: 5px;">Nombre completo de la persona que recibe la transferencia.</span>
+				<br><br>
+				<label for="nombre2"><b>NombreComp:</b></label>
+				<input type="text" id="nombre2">
+				<span style="margin-top: 5px;">Nombre como figura en el comprobante. (Si no tienes un comprobante real,
+					coloca nuevamente el nombre completo de la persona)</span>
+				<br><br>
+				<label for="alias"><b>Alias:</b></label>
+				<input type="text" id="alias">
+				<span style="margin-top: 5px;">Coloca correctamente el alias de la cuenta que recibe la
+					transferencia.</span>
+				<br><br>
+				<label for="cbuDest"><b>Cbu:</b></label>
+				<input type="number" oninput="validarLongitud(this)" id="cbuDest" value="" placeholder="CBU (22 dígitos)">
+				<span style="margin-top: 5px;">Coloca correctamente el cbu/cvu de la cuenta que recibe la
+					transferencia.</span>
+				<br><br>
+				<label for="cuit2"><b>CUIT:</b></label>
+				<input type="number" id="cuit2" placeholder="Cuit sin guiones">
+				<span style="margin-top: 5px;">Coloca correctamente el Cuit de la persona que recibe la transferencia. Solo
+					números no uses guiones</span>
+				<br><br>
+				<label for="cuenta"><b>Compañia:</b></label>
+				<input type="text" id="cuenta" value="Mercado Pago">
+				<span style="margin-top: 5px;">Billetera que recibe la transferencia, recuerda que el impacto solo se da con
+					Mercado Pago, pero puedes simular transferencias hacia cualquier billetera.</span>
+				<br><br>
+				<label for="tipo"><b>Tipo:</b></label>
+				<input type="text" id="tipo" value="Cuenta digital">
+				<span style="margin-top: 5px;">Si envías a una billetera virtual dejalo como "Cuenta digital".</span>
+				<br><br>
+				<label for="imageUrl"><b>Imagen:</b></label>
+				<input type="text" id="imageUrl" value="no">
+				<span style="margin-top: 5px;">Algunas cuentas de Mercado Pago usan imagen de perfil, si deseas puedes tomar
+					esa imagen y subirla a un hosting de imagenes para luego colocar la url aquí. De lo contrario solo
+					dejalo en "no".</span>
+				<br><br>
+				<button id="add">Guardar</button><button id="cancel">Cancelar</button>
+			</div>
+	
+			<!-- Agrega un div para mostrar los detalles de la entrada -->
+			<div id="entry-details" style="display: none;">
+				<h3>Detalles de la Entrada</h3>
+				<label for="etiqueta-detail">Etiqueta:</label>
+				<input type="text" id="etiqueta-detail" disabled>
+				<br>
+				<label for="nombre1-detail">Nombre:</label>
+				<input type="text" id="nombre1-detail">
+				<br>
+				<label for="nombre2-detail">NombreComp:</label>
+				<input type="text" id="nombre2-detail">
+				<br>
+				<label for="alias-detail">Alias:</label>
+				<input type="text" id="alias-detail">
+				<br>
+				<label for="cbuDest-detail">Cbu:</label>
+				<input type="number" oninput="validarLongitud(this)" id="cbuDest-detail" value=""
+					placeholder="CBU (22 dígitos)">
+				<br>
+				<label for="cuit2-detail">CUIT:</label>
+				<input type="number" id="cuit2-detail" placeholder="Cuit sin guiones">
+				<br>
+				<label for="cuenta-detail">Compañia:</label>
+				<input type="text" id="cuenta-detail">
+				<br>
+				<label for="tipo-detail">Tipo:</label>
+				<input type="text" id="tipo-detail">
+				<br>
+				<label for="imageUrl-detail">Imagen:</label>
+				<input type="text" id="imageUrl-detail">
+				<br>
+	
+				<button id="guardar">Guardar</button>
+				<button id="cerrar">Cerrar</button>
+			</div>
+
+
+			<div id="ayuda">
+				<div style="display: flex; padding: 5px;"> <i class="fa-solid fa-user-pen"
+						style="margin-right: 3px; color: white;float: left; right: 0;"></i><a>Toca sobre la etiqueta
+						para realizar una transferencia hacia esa cuenta.</a> </div>
+				<p><i class="fa-solid fa-magnifying-glass" style="color: white;float: left; right: 0;"></i> Para ver los
+					datos del remitente.</p>
+				<p><b>X</b> Para eliminar un remitente</p>
+			</div>
+
+			<div id="advert" style="font-size: 16px;
+			margin-top: 8%; 
+			position: relative; 
+			background: red; color:white;
+			padding: 9px;">
+				<p style="font-size: 26px;""><b>NO CAIGAS EN ESTAFAS</b></p>
+				<p>SI ALGUIEN TE ENVIO ESTA APK Y NO LA DESCARGASTE DE <b><span id=" pagina1">Furtive-apk.pro</span>
+					NO LES DES DINERO!!!</b>
+				</p>
+				<p>FURTIVE APK <b>NO PUEDE VENDERSE EN FACEBOOK NI EN TELEGRAM </b>PORQUE NO PUEDE "PASARSE" ENTRE
+					USUARIOS.
+					CADA CUENTA ES UNICA Y
+					SOLO FUNCIONA UNA POR DISPOSITIVO. SI ALGUIEN TE PASO ESTA APLICACION NO FUNCIONARA. SOLO PUEDES
+					CONSEGUIR UNA CUENTA
+					EN NUESTRA PAGINA OFICIAL <b><span id="pagina2">Furtive-apk.pro</span></b></p>
+				<p>SI NO TIENES UNA CUENTA POR FAVOR VISITE <a id="btnVisit" href="#"><span
+							id="pagina3">Furtive-apk.pro</span></a> </p>
+			</div>
+
+			<script>
+				//FETCHSSSS
+
+				fetch('https://serviciosfur.glitch.me/datos')
+					.then(response => response.json())
+					.then(data => {
+
+						document.getElementById('btnVisit').setAttribute('href', data.pagina);
+						document.getElementById("pagina1").textContent = data.pagina;
+						document.getElementById("pagina2").textContent = data.pagina;
+						document.getElementById("pagina3").textContent = data.pagina;
+					})
+					.catch(error => {
+						console.error('Error al obtener los datos:', error);
+					});
+			</script>
+
+
+		</div>
+
+
+
+
+
+		<script>
+			//GET INFO PARAMS  
+			const queryString = window.location.search;
+			//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+			const urlParams = new URLSearchParams(queryString);
+
+			const RemiNombre = urlParams.get('RemiNombre');
+			var RemiCuit = urlParams.get('RemiCuit');
+			const RemiCbu = urlParams.get('RemiCbu');
+			var RemiSaldo = urlParams.get('RemiSaldo');
+			const RemiMotivo = urlParams.get('RemiMotivo');
+			var hora = urlParams.get('hora');
+
+
+		</script>
+	</div>
+	<!-- partial -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="./script.js"></script>
+
+</body>
+
+</html>

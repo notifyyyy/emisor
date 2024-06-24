@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	overflow-x: hidden;
+	
+    
+}
+
+.slider-container {
+	width: 100%; /* Asegúrate de que el contenedor ocupe el 100% del ancho disponible */
+	max-width: 100%; /* Establece el ancho máximo al 100% */
+	overflow: hidden; /* Oculta cualquier desbordamiento horizontal */
+}
+
+
+.swiper-slide img {
+    width: 92%;
+}
+
+/* Estilos para los puntos de paginación */
+.swiper-pagination {
+	position: relative; 
+	left: 50% !important;
+	transform: translateX(-50%);
+	text-align: center;
+    /* Asegura que los puntos estén sobre las imágenes */
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+	width: 10px;
+	height: 10px;
+	background: gray;
+	display: inline-block;
+	margin: 0 5px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+	background:#009fe3; /* Cambia el color al activo */
+}
+
+

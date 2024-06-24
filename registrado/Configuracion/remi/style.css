@@ -1,0 +1,180 @@
+body {
+    font-family: "Bariol", sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+#container {
+    position: relative;
+    margin-top: 25%;
+}
+
+#div1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    background: linear-gradient(to top, #36addf 0%, #009fe3 100%);
+    width: 100%;
+}
+
+#div1 img {
+    width: 100%;
+}
+
+#nombree {
+    position: absolute;
+    top: 55%;
+    left: 11%;
+}
+
+#textoEnca {
+    font-size: 16px; 
+    background: #009fe3;
+    color: white;
+    width: 100%; 
+    text-align: center;
+    padding: 6px;
+    box-sizing: border-box; 
+}
+
+#ayuda {
+    font-size: 16px; 
+    background: #009fe3;
+    color: white;
+    width: 100%;  
+    padding: 6px;
+    box-sizing: border-box; 
+    display: grid;
+}
+
+#nombree span {
+    font-size: 16px;
+    color: white;
+}
+
+#content {
+    padding: 0px 5px 10px 5px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul li {
+    margin: 0;
+    list-style: none;
+    font-size: 16px;
+}
+
+.removebtn {
+    border: none;
+    background: none;
+    color: #999;
+    float: right;
+}
+
+.fa-solid {
+    border: none;
+    background: none;
+    color: #999;
+    float: right;
+    right: 14px;
+    position: relative;
+
+}
+
+#favorite-links li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#favorite-links li:last-child {
+    border: none;
+}
+
+#favorite-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#favorite-links li:hover {
+    background: #ccc;
+}
+
+#add-link-form {
+    display: none;
+    background: #444;
+    padding: 20px;
+    color: #ccc;
+    font-size: 16px;
+}
+
+#add-link-form input {
+    margin: 5px 0;
+    width: 100%;
+    color: #333;
+    padding: 5px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+}
+
+#new-link-button button, #add-link-form button {
+	margin: 10px 0;
+	background: #3fa22b;
+	border: none;
+	color: #fff;
+	padding: 5px 15px;
+	width: 30%;
+	height: 45px;
+	font-size: 16px;
+	border-radius: 10px;
+    margin-right: 2%;
+}
+
+#entry-details {
+    padding: 20px;
+    background: #ccc;
+}
+
+#entry-details input {
+    width: 100%;
+}
+
+#hora {
+    padding-left: 20px;
+    display: flex;
+    font-size: 14px;
+}
+
+#hora input {
+    width: 10%;
+    font-size: 16px;
+    margin-top: 10px;
+    height: 20px;
+}
+
+#div2 {
+    margin-top: 18%;
+    background: white;
+    position: relative;
+    padding: 3% 3%;
+    width: 88%;
+    margin-left: 2.5%;
+    border-radius: 5px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pie {
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+}

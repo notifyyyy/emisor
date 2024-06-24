@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('ProximaNovaRegular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+   
+}
+
+
+body {
+	font-family: 'Proxima Nova', sans-serif;
+	margin:0;
+	overflow: hidden;
+}
+
+.spinner {
+	margin: 0 auto;
+	width: 30px;
+	height: 30px;
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-top: 100%;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#encabezado {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 12px;
+}
+
+#cabecera {
+	width: 100%;
+	height: 100%;
+}
+
+#texto-superpuesto {
+	position: absolute;
+	top: 64%;
+	left: 48%;
+	transform: translate(-50%, -50%);
+	font-size: 18px;
+	color: white;
+}
+
+#texto-superpuesto span{ 
+	font-size: 18px; 
+}
+
+#logo {
+	width: 36%;
+    margin-bottom: 25px; 
+	
+}
+
+#content {
+	padding: 18px;
+	width: 84%;
+	z-index: 9999;
+	position: relative;
+	white-space: nowrap;
+	display: inline-grid;
+	padding-bottom: 9%;
+	box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.8);
+	margin-left: 3%;
+	margin-top: -2%;
+	height: 76vh;
+}
+
+#data {
+	display:flex;
+}
+
+#data #imgV img {
+	width: 7%;
+}
+
+
+
+#d1 {margin-left: 5px;}
+
+#d2 {margin-top: 2%;margin-left: 1%;}
+#d3 {margin-left: 1%;}
+#d4 {margin-top: 10%;margin-left: 6%;}
+#d5 {margin-top: 0%;margin-left:6%;}
+#d6 {margin-top: 1%;margin-left:6%;}
+#d7 {margin-top: 0%;margin-left:6%;}
+#d8 {margin-top: 6%;margin-left:6%;}
+#d9 {margin-top: 0%;margin-left:6%;}
+#d10 {margin-top: 2%;margin-left:6%;}
+#d11 {margin-top: 0%;margin-left:6%;}
+#d12 {margin-top: 0%;margin-left:6%;}
+h1 {
+	font-size: 19px;
+	
+}
+
+
+
+.info-container {
+	display: flex;
+	align-items: flex-start;
+}
+
+.circle {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	
+}
+
+.blue {
+	background-color: #009fe3;
+}
+
+
+.info {
+	margin-left: 5px;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.linea-vertical {
+	position: relative;
+	background-color: #a2a2a26e;
+	width: 1px;
+	height: calc(100% - 5%); /* Ajusta el alto para que termine antes de los círculos */
+	left: -3.4%;
+	transform: translateX(-50%); 
+	top: 20%; 
+	z-index: -1;  
+}
+
+
+
+
+
+
+
+#contenedor {
+   	
+	display: block;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Proxima Nova', sans-serif;
+	margin: 5%;
+	padding: 5%;
+	box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.8);
+	/* overflow: hidden; */
+}
+
+
+
+#div1 img {
+	width: 50%;
+	margin-bottom:2%;
+}
+
+
+#div2{
+	position: relative;
+	padding: 3% 10%;
+	
+}
+
+
+
+
+
+hr {
+	margin-top: 3%;
+	margin-bottom: 3%;
+	position: relative;
+	opacity: 0.6;
+	width: 113%;
+	margin-left: -20px;
+	border: none;
+	border-top: 1px solid #a2a2a26e;
+}
+
+
+
+#div3 {
+	position:relative; 
+	padding: 3% 10%;
+	
+}
+
+
+
+#div4 {
+	position:relative; 
+	padding: 3% 10%;
+	
+}
+
+
+
+/* ANIMACION NOTIFICACION */
+
+    
+.circle-container {
+	margin-left: 2%;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	z-index: 99999999;
+	width: 96%;
+}
+
+.conte {
+	opacity:0; 
+    position: relative;
+    border-radius: 19px;
+    height: 58px;
+    display: flex;
+    animation: aparecer 0.3s 4s linear forwards;
+    margin-top: 8%;
+    width: auto; 
+	justify-content: space-between;
+}
+
+
+.circle-image {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	margin-left: 3px;
+	margin-top: 10px;
+}
+
+.circle {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	margin-left: 2%;
+	margin-top: 2%;
+	margin-right: 2%;
+}
+
+
+
+.text {
+	font-family: 'Proxima Nova', sans-serif; 
+	padding-top: 11px;
+	padding-right: 33px;
+	font-size: 14px; 
+	color: white;
+	white-space: nowrap;
+	overflow: hidden;
+	margin-left: 12%; 
+    position: absolute;
+}
+
+.logo2 {
+	margin-left: 4%;
+ 	margin-right: 4%;
+	margin-top: 5%;
+}
+.logo2 img {
+	width: 45px;
+	height: 25px;
+}
+
+#horaNoti{ 
+	font-size: 10px;
+	color: #b9b9b9;
+}
+ #des{ 	 
+	color: #b9b9b9;
+}
+ 
+
+@keyframes aparecer {
+    0% {
+	    opacity:0;        
+		background-color:#0000;
+		 
+	}
+    100% {
+        opacity:1;		
+		background-color: #000000d4;
+		width: auto;
+	}
+}
+
+
+ 
+
+ 
+
+.fade-out {
+    animation: chau 0.5s !important; 
+	 
+     
+}
+
+
+ @keyframes chau {
+    0% {
+        opacity:1;
+		left:0%;
+	}
+    100% {
+		opacity:0;
+		left:100%;
+	}
+}
+
+
+
+
+
+

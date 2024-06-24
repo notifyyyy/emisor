@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <link rel="stylesheet" href="styles.css">
+		
+	</head>
+    <body>
+        <div id="loader" style="display: flex; justify-content: center; align-items: center;">
+            <!-- Spinner -->
+            <div class="spinner"></div>
+		</div>
+		
+		<div id="content" style="display: none;">  
+			
+			<img id="img1" src="img1.jpg"></img>
+			
+			<div id="div1">
+				<span>Creada el <span id="date">13 de agosto</span></span>
+				<br><br>
+				<span style="color:#3aa3ff">Número de operación <span id="codTrans" style="color:#3aa3ff"></span> <i class="fa-regular fa-copy fa-xs" style="color: #3aa3ff;"></i></span>
+			</div>	
+			
+			
+			<div id="div2" style="display: flex; justify-content: space-between;align-items: center;margin-top: 5%;">
+				<div id="izq">
+					<span id="ico2"><i class="fa-solid fa-dollar-sign fa-sm" style="color: #000000;"></i></span>
+					<div style="display: grid;">
+						<b><span style="display: block ruby;">Transferencia de dinero</span></b>
+						
+					</div>
+				</div>
+				
+				<div id="der">
+					
+					<div style="display: grid;">
+						<b><span>$ <span id="mont">25.500,00</span></span> </b>
+						
+					</div>
+				</div>
+			</div>	
+			
+			
+            
+			<img id="img2" src="img2.jpg"></img>
+			
+			<div id="div2" style=" justify-content: space-between;align-items: center;">
+				
+				
+				<div id="izq2">
+					<div style="display: block ruby;">
+						<i class="fa-regular fa-circle-user fa-sm" style="color: black;"></i> 
+						<b><span style="display: block ruby;">  Transferencia a</span></b>
+					</div>	
+					
+					<div style="display: flex;white-space: nowrap;">
+						<span id="ico" style="margin-top: 4%;margin-left: 8%;"><b><span id="inic" style="display: grid;color:#8a8888;">SV</span></b></span>
+						<b><span id="name" style="top:15px;font-size: 13px;color: black;position: relative;">Sofia Antonella Vergara</span></b>
+					</div>
+					
+					
+					<div style="display: grid;margin-left: 6%;">
+						<b><span style="white-space: nowrap; font-size:13px; color:#9f9f9f;margin-left: 23.5%;">CUIT/CUIL: <span id="cuit" style="font-size:13px; color:#9f9f9f">Sofia Antonella Vergara</span></span></b>	
+						<b><span id="billetera" style="font-size:13px; color:#9f9f9f;margin-left: 23.5%;">Mercado Pago</span></b>		
+					</div>
+				</div>
+				
+			</div>		
+			
+			
+			
+			<img id="img3" src="img3.jpg"></img>
+			
+			
+			
+		</div>
+		
+		
+	</div>			
+	
+	
+	
+	
+	
+	
+	<script src="script.js"></script>
+	
+	<script>
+		
+		
+		
+		
+		function restarFecha(dias) {
+			const fechaActual = new Date();
+			fechaActual.setDate(fechaActual.getDate() - dias);
+			
+			const dia = fechaActual.getDate();
+			const mes = obtenerNombreMes(fechaActual.getMonth());
+			
+			return `${dia} de ${mes}`;
+		}
+		
+		function obtenerNombreMes(numeroMes) {
+			const meses = [
+			"enero", "febrero", "marzo", "abril", "mayo", "junio",
+			"julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+			];
+			
+			return meses[numeroMes];
+		}
+		
+		function cargarFechas() {
+			const spans = document.querySelectorAll("span[data-dias]");
+			
+			spans.forEach(span => {
+				const dias = parseInt(span.getAttribute("data-dias"));
+				const fechaRestada = restarFecha(dias);
+				span.textContent = fechaRestada;
+			});
+		}
+		
+		
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content");
+			
+			// Ocultar el mensaje de carga y mostrar el contenido de la página
+			loader.style.display = "none";
+			content.style.display = "block";
+			cargarFechas();
+		};
+		
+		function siguiente() {
+			var front = document.getElementById("front");
+			front.style.transition = "transform 0.8s ease";
+			front.style.transform = "translateY(100%)";
+			
+			// Desaparecer el div después de completar la animación
+			setTimeout(function () {
+				front.style.display = "none";
+			}, 300);
+		}
+		
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+		
+		const RemiNombre = urlParams.get('RemiNombre');
+		var RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		const RemiMotivo = urlParams.get('RemiMotivo');  
+		const DestiNombre1 = urlParams.get('DestiNombre1');  
+		const DestiNombre2 = urlParams.get('DestiNombre2'); 
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		var DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+		var codT = urlParams.get('codT');
+		
+		//se recibe parametros temporales
+		
+		const TempRemiNombre = urlParams.get('TempRemiNombre');
+		const TempRemiCuit = urlParams.get('TempRemiCuit');
+		const TempRemiCbu = urlParams.get('TempRemiCbu');
+		
+		const TempDestiNombre1 = urlParams.get('TempDestiNombre1');
+		const TempDestiNombre2 = urlParams.get('TempDestiNombre2');
+		const TempDestiCuit = urlParams.get('TempDestiCuit');
+		const TempDestiCbuDest = urlParams.get('TempDestiCbuDest');
+		const TempDestiCuenta = urlParams.get('TempDestiCuenta');
+		const TempDestiTipo = urlParams.get('TempDestiTipo');
+		const TempRemiMotivo = urlParams.get('TempRemiMotivo');
+	  
+		
+		monto = monto.replace(/,.*|[^0-9]/g, "");
+		document.getElementById("codTrans").innerHTML = codT;
+		document.getElementById("date").innerHTML = hora;
+		document.getElementById("billetera").textContent = DestiCuenta;
+		
+		
+		monto = monto.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+		document.getElementById("mont").textContent = monto;
+		document.getElementById("name").textContent = DestiNombre1;
+		
+		//obtener inciiales del nombre
+		const palabras = DestiNombre1.split(' ');
+		let iniciales = '';
+		
+		if (palabras.length > 0) {
+			iniciales += palabras[0][0].toUpperCase();
+		}
+		
+		if (palabras.length > 1) {
+			iniciales += palabras[palabras.length - 1][0].toUpperCase();
+		}
+		
+		var inicial = iniciales.slice(0, 2);
+		
+		// Verifica si la cadena termina en un punto
+		if (inicial.endsWith('.')) {
+			// Si termina en punto, quita el punto y agrega un espacio en blanco
+			inicial = " " + inicial.slice(0, -1) + '. ';
+			
+			
+		} 
+		
+		document.getElementById("inic").textContent = inicial;
+		document.getElementById("cuit").textContent = DestiCuit;
+		
+		
+		
+		document.getElementById("img3").addEventListener("click", function() {				
+			window.open("../../inalias/monto/prepago/final/comprobante/comprobante.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=" + monto + "&fecha=" + hora + "." + "&codT=" + codT + "&TresCod=" + TresCod + "&notificacion=no" + "&TempRemiNombre=" + TempRemiNombre +  "&TempRemiCuit=" + TempRemiCuit + "&TempRemiCbu=" + TempRemiCbu + "&TempDestiNombre1=" + TempDestiNombre1 + "&TempDestiNombre2=" + TempDestiNombre2 + "&TempDestiCuit=" + TempDestiCuit + "&TempDestiCbuDest=" + TempDestiCbuDest + "&TempDestiCuenta=" + TempDestiCuenta + "&TempDestiTipo=" + TempDestiTipo + "&TempRemiMotivo=" + TempRemiMotivo, '_self');	
+			
+			
+		});  
+		//index.html?titular=Roberto Loco&micuit=27328984542&cbu=000034&nombre=Maria Elena GOnzalez&dni=2816908782&wallet=Mercado Pago&tipo=Cuenta digital&saldo=12563&motivo=varios&monto=0
+		// Obtener la fecha actual
+		
+		/*
+			document.getElementById("btnMov").addEventListener("click", function() {
+			
+			window.open('movimientos/movimientos.html?titular=' + titular + '&micuit=' + micuit +'&cbu=' + cbu + '&nombre=' + nombre + '&dni=' + dni + '&wallet=' + wallet + '&tipo=' + tipo + '&saldo='+ saldo +'&motivo=' + motivo + '&monto=' + monto, '_self');	  
+			});
+			
+			document.getElementById("img2").addEventListener("click", function() {
+			
+			window.open('movimientos/movimientos.html?titular=' + titular + '&micuit=' + micuit +'&cbu=' + cbu + '&nombre=' + nombre + '&dni=' + dni + '&wallet=' + wallet + '&tipo=' + tipo + '&saldo='+ saldo +'&motivo=' + motivo + '&monto=' + monto, '_self');	
+		});
+		
+		
+		
+		document.getElementById("enc3").addEventListener("click", function() {
+		
+		window.open('pagina1/pagina1.html?titular=' + titular + '&micuit=' + micuit +'&cbu=' + cbu + '&nombre=' + nombre + '&dni=' + dni + '&wallet=' + wallet + '&tipo=' + tipo + '&saldo='+ saldo +'&motivo=' + motivo + '&monto=' + monto, '_self');	
+		
+		
+		});  
+		
+		*/
+		
+		
+		
+		
+		
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function(event) {
+		if (event.touches.length > 1) {
+		event.preventDefault();
+		}
+		}, { passive: false });
+		
+		document.addEventListener('touchmove', function(event) {
+		if (event.touches.length > 1) {
+		event.preventDefault();
+		}
+		}, { passive: false });
+		
+		
+		
+		
+		
+		
+		
+		</script>
+		
+		</body>
+		</html>
+				

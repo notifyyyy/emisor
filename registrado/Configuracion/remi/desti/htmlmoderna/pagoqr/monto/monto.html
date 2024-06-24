@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/67821f8363.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="stylesAlias.css">
+	<link rel="preload" as="font" href="ProximaNovaRegular.ttf" type="font/ttf" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+	<!-- PAGINA ALIAS -->
+	<div id="loader" style="display: flex; justify-content: center; align-items: center;">
+		<!-- Spinner -->
+		<div class="spinner"></div>
+	</div>
+	<div id="content" style="display: none;">
+
+		<div id="back">
+			<img id="enc" src="encaAlias.jpg">
+		</div>
+
+		<!-- Modificamos el div con id "front" -->
+		<div id="front">
+			<div id="x-name">
+				<div class="image-container">
+					<img id="imagen" src="user.jpg">
+				</div>
+				<div class="info-container">
+					<h1 id="name">Ramon Valdez</h1>
+					<p>CUIT:</p>
+					<p id="cuil">20-326587414-2</p>
+				</div>
+			</div>
+
+
+
+			<div id="data">
+				<div class="image-container2">
+					<div class="circular-image">
+						<img id="imagenLogo" src="logosWallet/otro.jpg">
+					</div>
+				</div>
+				<div class="info-container">
+					<h1 id="billetera">Mercado Pago</h1>
+					<p id="cc">Alias:</p>
+					<p id="cbu">0000065566565</p>
+				</div>
+				<i class="fa-solid fa-chevron-right fa-sm"></i>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+
+	<!-- FIN PAGINA ALIAS -->
+
+	<!-- PAGINA MONTO -->
+
+
+
+	<div id="content2" style="display: none;">
+
+		<div id="back">
+			<img src="enca.jpg" id="atras"></img>
+		</div>
+		<div id="nam">
+			<h1 id="nombre">Ingresá el monto de la compra</h1>
+		</div>
+
+		<div class="visor-container">
+			<h1 id="signoVisor">$</h1>
+			<div id="visor-wrapper">
+				<h1 id="visor">0</h1>
+			</div>
+			<h1 id="visorDec">00</h1>
+		</div>
+		 
+
+
+
+
+
+
+		<div class="input-container">
+
+			<input type="text" id="numberInput" placeholder="0" oninput="updateInputSize()" pattern="\d*"
+				style="padding-left: 0px; padding-right: 0px;" inputmode="numeric">
+
+			<input type="number" id="numberDecimal" placeholder="00" pattern="\d*"
+				style="padding-left: 0px;padding-right: 0px;" maxlength="2">
+		</div>
+
+
+
+
+
+		<div id="contboton">
+			<img id="boton" src="btn_0.jpg" onclick="handleClick(event)">
+		</div>
+
+	</div>
+
+	<!-- FIN PAGINA MONTO -->
+
+	<script>
+		window.onload = function () {
+			var loader = document.getElementById("loader");
+			var content = document.getElementById("content2");
+			setTimeout(function () {
+				// Ocultar el mensaje de carga y mostrar el contenido de la página
+				loader.style.display = "none";
+				content.style.display = "block";
+				document.getElementById("numberInput").focus();
+				resetInput();
+				animateBounce(visor, 300, 1.5);
+
+			}, 1500);
+
+
+		};
+
+		function siguiente() {
+			setTimeout(function () {
+				var ent = document.getElementById("numberInput");
+				var dec = document.getElementById("numberDecimal");
+				if (dec.value == "") {
+					dec.value = "00"
+				}
+				if (dec.value == "00") {
+					monto = ent.value;
+				} else {
+					monto = ent.value + "," + dec.value;
+				}
+
+
+				// MOTIVO en caso de haberlo
+				const inputBox = document.getElementById('inputBox');
+				RemiMotivo = "varios";
+
+
+
+				window.open("prepago/prepago.html?RemiNombre=" + RemiNombre + "&RemiCuit=" + RemiCuit + "&RemiCbu=" + RemiCbu + "&RemiSaldo=" + RemiSaldo + "&RemiMotivo=" + RemiMotivo + "&DestiNombre1=" + DestiNombre1 + "&DestiNombre2=" + DestiNombre2 + "&DestiAlias=" + DestiAlias + "&DestiCbuDest=" + DestiCbuDest + "&DestiCuit=" + DestiCuit + "&DestiCuenta=" + DestiCuenta + "&DestiTipo=" + DestiTipo + "&DestiImagen=" + DestiImagen + "&monto=" + monto + "&hora=" + hora + "&TresCod=" + TresCod, '_self');
+
+			}, 300);
+		}
+
+
+		//GET INFO PARAMS  
+		const queryString = window.location.search;
+		//luego podemos analizar los parámetros de la cadena de consulta usando URLSearchParams: 
+		const urlParams = new URLSearchParams(queryString);
+
+		const RemiNombre = urlParams.get('RemiNombre');
+		const RemiCuit = urlParams.get('RemiCuit');
+		const RemiCbu = urlParams.get('RemiCbu');
+		var RemiSaldo = urlParams.get('RemiSaldo');
+		var RemiMotivo = urlParams.get('RemiMotivo');
+		const DestiNombre1 = urlParams.get('DestiNombre1');
+		const DestiNombre2 = urlParams.get('DestiNombre2');
+		const DestiAlias = urlParams.get('DestiAlias');
+		const DestiCbuDest = urlParams.get('DestiCbuDest');
+		const DestiCuit = urlParams.get('DestiCuit');
+		const DestiCuenta = urlParams.get('DestiCuenta');
+		const DestiTipo = urlParams.get('DestiTipo');
+		const DestiImagen = urlParams.get('DestiImagen');
+		var monto = urlParams.get('monto');
+		var hora = urlParams.get('hora');
+		var TresCod = urlParams.get('TresCod');
+
+		// Obtén el nombre (puedes obtenerlo de donde lo tengas)
+		const nombreCompleto = DestiNombre1; // Cambia esto por tu nombre dinámico
+
+		function obtenerIniciales(DestiNombre1) {
+			const partesNombre = DestiNombre1.split(" ");
+			if (partesNombre.length >= 2) {
+				const primeraLetra = partesNombre[0][0].toUpperCase();
+				const segundaLetra = partesNombre[1][0].toUpperCase();
+				return primeraLetra + segundaLetra;
+			} else if (partesNombre.length === 1) {
+				// Si solo hay una palabra, obtener su inicial
+				const primeraLetra = partesNombre[0][0].toUpperCase();
+				return primeraLetra;
+			} else {
+				// Si no hay palabras, devolver un valor predeterminado o manejar el caso en consecuencia
+				return "NN"; // Por ejemplo, "NN" para indicar "ninguna inicial"
+			}
+		}
+
+
+		// Obtén las iniciales del nombre
+		const iniciales = obtenerIniciales(nombreCompleto);
+
+		// Crea el círculo y colócalo a la izquierda del nombre
+		const circleElement = document.getElementById("circle");
+		circleElement.innerText = iniciales;
+
+
+
+
+
+
+		document.getElementById("disp").innerHTML = "$ " + RemiSaldo + ",63 disponible.";
+
+		document.getElementById("nombre").innerHTML = DestiNombre1;
+
+
+		// Deshabilitar el zoom táctil
+		document.addEventListener('touchstart', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+		document.addEventListener('touchmove', function (event) {
+			if (event.touches.length > 1) {
+				event.preventDefault();
+			}
+		}, { passive: false });
+
+	</script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src="scripts.js"></script>
+	<script src="scriptsAlias.js"></script>
+
+</body>
+
+</html>
