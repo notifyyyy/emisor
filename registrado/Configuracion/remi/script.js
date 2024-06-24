@@ -97,15 +97,11 @@ $(document).ready(function() {
 	
 	// Remove item
 	$ul.on('click', '.removebtn', function() {
-	    var confirmar = confirm("¿Estás seguro de que deseas eliminar esta entrada?");
-		
-		if (confirmar) {
 			var etiqueta = $(this).parent().data('etiqueta');
 			localStorage.removeItem("remi_" + etiqueta);
 			$(this).parent().remove();
 			// Save changes to localStorage
-			localStorage.setItem('remi_vk-links', $ul.html());
-		}  
+			localStorage.setItem('remi_vk-links', $ul.html()); 
 	 	
 	});
 	
